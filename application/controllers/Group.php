@@ -34,7 +34,7 @@ class Group extends CI_Controller
 
                 $this->db->insert('groups_chats', $group);
 
-                $group_member['chat_id'] = $chat_data['id'];
+                $group_member['group_id'] = $this->db->insert_id();;
                 $group_member['user_id'] = $this->session->userdata('user_id');
                 $this->db->insert('groups_members', $group_member);
 
@@ -47,7 +47,7 @@ class Group extends CI_Controller
 
     public function check()
     {
-        $data['chat_id'] = $this->uri->segment(3);
+        $data['group_id'] = $this->uri->segment(3);
         $data['user_id'] = $this->session->userdata('user_id');
 
         /**
@@ -59,7 +59,7 @@ class Group extends CI_Controller
             redirect('group/index/'.$this->uri->segment(3));
         } else {
             $this->db->insert('groups_members', $data);
-            $this->db->query("UPDATE groups_chats SET total_member = total_member + 1 WHERE chat_id = ".$this->uri->segment(3));
+            $this->db->query("UPDATE groups_chats SET total_member = total_member + 1 WHERE id = ".$this->uri->segment(3));
             redirect('group/index/'.$this->uri->segment(3));
         }
     }

@@ -25,7 +25,7 @@
       <td>$r->created_by</td>
       <td>$r->total_member</td>
       <td>".
-        anchor('group/check/'. $r->chat_id, 'Chat', ['class' => 'btn btn-success btn-sm'])
+        anchor('group/check/'. $r->group_id, 'Chat', ['class' => 'btn btn-success btn-sm'])
       ."</td>
     </tr>";
   }

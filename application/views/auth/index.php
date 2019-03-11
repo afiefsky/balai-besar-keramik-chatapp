@@ -4,7 +4,7 @@
     echo $error;
     $this->session->unset_userdata('error');
 ?>
-<h2 class="form-signin-heading">Post Chat</h2>
+<h2 class="form-signin-heading">BKK Chat</h2>
 <table class="table table-bordered">
   <tbody>
       <tr>

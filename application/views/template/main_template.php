@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Post Chat</title>
+    <title>BBK Chat</title>
     
     <script type="text/javascript" src="<?php echo base_url() . 'assets/js/'; ?>jquery.min.js"></script>
 
@@ -76,10 +76,10 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/dashboard">
-            <img src="<?php echo base_url(); ?>assets/images/logo.png" height="35" width="50" />
+            <img src="<?php echo base_url(); ?>assets/images/logo.png" height="30" width="50" />
           </a>
           <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/dashboard">
-            Post Chat
+            BBK Chat
           </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
@@ -87,7 +87,7 @@
             <li>
             <?php
             if ($this->session->userdata('role') == 1) {
-              echo anchor('magazine', 'Sticky Notes');
+              echo anchor('magazine', 'Notice Board');
             } else {
               
             }
@@ -96,7 +96,7 @@
             <li>
             <?php
             if ($this->session->userdata('role') == 1) {
-              echo anchor('chat/group', 'Chat Grup');
+              echo anchor('chat/group', 'Group Chat');
             } else {
               
             }

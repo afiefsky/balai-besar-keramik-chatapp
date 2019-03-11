@@ -21,7 +21,6 @@ class Chat extends CI_Controller
     {
         /* Get all chatroom of group*/
         $data['record'] = $this->group->all();
-
         $this->template->load('template/main_template', 'chat/group/index', $data);
     }
 
@@ -37,11 +36,11 @@ class Chat extends CI_Controller
         // $this->segment->select($first_segment, $second_segment);
 
         if (isset($_POST['submit'])) {
-            chmod(base_url() . 'uploads/', 0777); 
+            // chmod(base_url() . 'uploads/', 0777); 
 
             $id = $this->uri->segment(3);
             $config['upload_path']          = './uploads/';
-            $config['allowed_types']        = 'gif|jpg|png|pdf|docx|doc|sql|xlsx|xls|ppt|pptx';
+            $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf|docx|doc|sql|xlsx|xls|ppt|pptx';
 
             $this->load->library('upload', $config);
 
@@ -157,7 +156,7 @@ class Chat extends CI_Controller
         $this->session->set_userdata('target_id', $second_id);
 
         $result = $this->segment->locate($first_id, $second_id);
-        
+
         if ($result == 1) {
             redirect('chat/index/'. $this->session->userdata('chat_id'));
         } else {
