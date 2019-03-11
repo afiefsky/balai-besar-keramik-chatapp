@@ -1,0 +1,24 @@
+#container {
+    margin: 0px auto;
+    width: 320px;
+    height: 480px;
+    border: 3px #333 solid;
+    background-color: #666;
+}
+
+#localVideo {
+    width: 320px;
+    height: 200px;
+    background-color: #666;
+}
+
+.videoContainer {
+    width: 320px;
+    height: 200px;
+    background-color: #666;
+}
+.videoContainer video {
+    width: 320px;
+    height: 200px;
+    background-color: #666;
+}
