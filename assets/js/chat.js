@@ -67,14 +67,14 @@ $(document).ready(function() {
                 $("div#chat_viewport").html(current_content + data.content);
                 
                 if (!data.content == '') {
-                    var notification = new Notification('Notification title', {
-                      icon: '',
-                      body: "Ada pesan masuk, silahkan cek!!",
-                    });
+                    // var notification = new Notification('Notification title', {
+                    //   icon: '',
+                    //   body: "Ada pesan masuk, silahkan cek!!",
+                    // });
 
-                    notification.onclick = function () {
-                      window.open("http://stackoverflow.com/a/13328397/1269037");      
-                    };
+                    // notification.onclick = function () {
+                    //   window.open("http://stackoverflow.com/a/13328397/1269037");      
+                    // };
 
                     /* Scroll each time you get new message */
                     $('div#chat_viewport').scrollTop($('div#chat_viewport')[0].scrollHeight);
