@@ -20,9 +20,9 @@
         $no++;
 
         if ($r->is_logged_in == 1) {
-            $logged_status = '<b> > <u>Online</b>';
+            $logged_status = '<b><img src="' . base_url() . 'assets/images/green-circle.png" width="20px" />&nbsp;<u>Online</b>';
         } else {
-            $logged_status = 'Offline';
+            $logged_status = '<img src="'.base_url().'assets/images/red-circle.png" width="20px" />Offline';
         }
 
         echo "<tr>

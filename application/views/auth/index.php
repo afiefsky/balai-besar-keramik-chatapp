@@ -4,6 +4,9 @@
     echo $error;
     $this->session->unset_userdata('error');
 ?>
+<p align="center">
+  <img src="<?php echo base_url(); ?>assets/images/logo-black.png" height="120" width="110" />
+</p>
 <h2 class="form-signin-heading">BKK Chat</h2>
 <table class="table table-bordered">
   <tbody>

@@ -6,7 +6,7 @@ $(document).ready(function() {
             'id': 1
         };
 
-        console.log(formData['id']);
+        // console.log(formData['id']);
 
         $.ajax({
             type: 'POST',

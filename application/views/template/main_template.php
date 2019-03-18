@@ -76,7 +76,7 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/dashboard">
-            <img src="<?php echo base_url(); ?>assets/images/logo.png" height="30" width="50" />
+            <img src="<?php echo base_url(); ?>assets/images/logo.png" height="30" width="35" />
           </a>
           <a class="navbar-brand" href="<?php echo base_url(); ?>index.php/dashboard">
             BBK Chat

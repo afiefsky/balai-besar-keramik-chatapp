@@ -57,40 +57,43 @@ $(document).ready(function() {
 
     function get_chats_messages()
     {
-        $.post(base_url + "index.php/chat/ajax_get_chats_messages", { chat_id: chat_id }, function(data) {
+        // if (!window.location.pathname === '/balai-besar-keramik-chatapp/index.php/dashboard/'
+        // || !window.location.pathname === '/balai-besar-keramik-chatapp/index.php/dashboard') {
+            $.post(base_url + "index.php/chat/ajax_get_chats_messages", { chat_id: chat_id }, function(data) {
 
-            /* Condition */
-            if (data.status == 'ok') {
-                console.log(current_content);
-                var current_content = $("div#chat_viewport").html();
+                /* Condition */
+                if (data.status == 'ok') {
+                    // console.log(current_content);
+                    var current_content = $("div#chat_viewport").html();
 
-                $("div#chat_viewport").html(current_content + data.content);
-                
-                if (!data.content == '') {
-                    // var notification = new Notification('Notification title', {
-                    //   icon: '',
-                    //   body: "Ada pesan masuk, silahkan cek!!",
-                    // });
-
-                    // notification.onclick = function () {
-                    //   window.open("http://stackoverflow.com/a/13328397/1269037");      
-                    // };
-
-                    /* Scroll each time you get new message */
-                    $('div#chat_viewport').scrollTop($('div#chat_viewport')[0].scrollHeight);
-                } else {
+                    $("div#chat_viewport").html(current_content + data.content);
                     
+                    if (!data.content == '') {
+                        // var notification = new Notification('Notification title', {
+                        //   icon: '',
+                        //   body: "Ada pesan masuk, silahkan cek!!",
+                        // });
+
+                        // notification.onclick = function () {
+                        //   window.open("http://stackoverflow.com/a/13328397/1269037");      
+                        // };
+
+                        /* Scroll each time you get new message */
+                        $('div#chat_viewport').scrollTop($('div#chat_viewport')[0].scrollHeight);
+                    } else {
+                        
+                    }
+                    
+
+                } else {
+                    /* Error here */
                 }
-                
 
-            } else {
-                /* Error here */
-            }
+            }, "json");
 
-        }, "json");
-
-        return false;
-    }
+            return false;
+        // } // END IF
+    } // END METHOD
 
     get_chats_messages();
 
