@@ -41,7 +41,7 @@ class Group extends CI_Controller
                 redirect('chat/group/index');
             }
         } else {
-            $this->template->load('template/main_template', 'chat/group/add');
+            $this->template->load('template/dashboard_template', 'chat/group/add');
         }
     }
 

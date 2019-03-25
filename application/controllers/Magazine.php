@@ -21,7 +21,7 @@ class Magazine extends CI_Controller
         } else {
             $data['record'] = $this->magazine->index();
 
-            $this->template->load('template/main_template', 'magazine/index', $data);
+            $this->template->load('template/dashboard_template', 'magazine/index', $data);
         }
     }
 }

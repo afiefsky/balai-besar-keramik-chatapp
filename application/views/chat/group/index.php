@@ -22,7 +22,7 @@
     echo "<tr>
       <td>$no</td>
       <td>$r->topic</td>
-      <td>$r->created_by</td>
+      <td>$r->first_name $r->last_name</td>
       <td>$r->total_member</td>
       <td>".
         anchor('group/check/'. $r->group_id, 'Chat', ['class' => 'btn btn-success btn-sm'])

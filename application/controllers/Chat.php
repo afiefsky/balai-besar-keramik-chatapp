@@ -21,9 +21,8 @@ class Chat extends CI_Controller
     {
         /* Get all chatroom of group*/
         $data['record'] = $this->group->all();
-        $this->template->load('template/main_template', 'chat/group/index', $data);
+        $this->template->load('template/dashboard_template', 'chat/group/index', $data);
     }
-
 
     /**
      * Chat Index
