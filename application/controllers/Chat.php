@@ -199,7 +199,7 @@ class Chat extends CI_Controller
 
         $this->session->set_userdata('last_chat_message_id_' . $this->view_data['chat_id'], 0);
 
-        $this->template->load('template/main_template', 'chat/index', $this->view_data);
+        $this->template->load('template/new_main_template', 'chat/index', $this->view_data);
     }
 
     public function test()

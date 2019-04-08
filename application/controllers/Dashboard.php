@@ -19,7 +19,7 @@ class Dashboard extends CI_Controller
         if ($this->session->userdata('role') == 1) {
             $data['record'] = $this->user->get($this->session->userdata('user_id'));
 
-            $this->template->load('template/dashboard_template', 'dashboard/index', $data);
+            $this->template->load('template/new_template', 'dashboard/index', $data);
         } else {
             $data['record'] = $this->db->get('users');
             $this->template->load('template/dashboard_template', 'dashboard/admin/index', $data);

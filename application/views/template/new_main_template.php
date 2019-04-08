@@ -4,6 +4,30 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 <head>
+    <script type="text/javascript" src="<?php echo base_url() . 'assets/js/'; ?>jquery.min.js"></script>
+
+    <script type="text/javascript">
+      var chat_id = "<?php echo $chat_id; ?>";
+      var user_id = "<?php echo $user_id; ?>";
+    </script>
+    
+    <script type="text/javascript" src="<?php echo base_url() . 'assets/js/'; ?>chat.js"></script>
+    <script src="<?php echo base_url() ?>assets/js/latest-v2.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/camera.css">
+    <?php
+    if ($this->session->userdata('role') == 1) {
+        $link = 'assets/css/chat.css';
+      } else {
+        $link = 'assets/css/chat_admin.css';
+      }
+    ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . $link; ?>">
+    <script type="text/javascript">
+      var base_url = "<?php echo base_url(); ?>";
+    </script>
+
+    <!-- BREAK -->
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Balai Besar Keramik</title>
@@ -284,30 +308,81 @@
         <!-- /.site-footer -->
     </div>
     <!-- /#right-panel -->
-
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/ela-admin/assets/js/main.js"></script>
+    <script type="text/javascript">
+      [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+        new SelectFx(el);
+      });
 
-    <!--  Chart js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
+      jQuery('.selectpicker').selectpicker;
 
-    <!--Chartist Chart-->
-    <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
+      $('.search-trigger').on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        $('.search-trigger').parent('.header-left').addClass('open');
+      });
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+      $('.search-close').on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        $('.search-trigger').parent('.header-left').removeClass('open');
+      });
 
-    <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/ela-admin/assets/js/init/weather-init.js"></script>
+      $('.equal-height').matchHeight({
+        property: 'max-height'
+      });
 
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/ela-admin/assets/js/init/fullcalendar-init.js"></script>
+      // var chartsheight = $('.flotRealtime2').height();
+      // $('.traffic-chart').css('height', chartsheight-122);
+
+
+      // Counter Number
+      $('.count').each(function () {
+        $(this).prop('Counter',0).animate({
+          Counter: $(this).text()
+        }, {
+          duration: 3000,
+          easing: 'swing',
+          step: function (now) {
+            $(this).text(Math.ceil(now));
+          }
+        });
+      });
+
+      // Menu Trigger
+      $('#menuToggle').on('click', function(event) {
+        var windowWidth = $(window).width();       
+        if (windowWidth<1010) { 
+          $('body').removeClass('open'); 
+          if (windowWidth<760){ 
+            $('#left-panel').slideToggle(); 
+          } else {
+            $('#left-panel').toggleClass('open-menu');  
+          } 
+        } else {
+          $('body').toggleClass('open');
+          $('#left-panel').removeClass('open-menu');  
+        } 
+      }); 
+       
+      $(".menu-item-has-children.dropdown").each(function() {
+        $(this).on('click', function() {
+          var $temp_text = $(this).children('.dropdown-toggle').html();
+          $(this).children('.sub-menu').prepend('<li class="subtitle">' + $temp_text + '</li>'); 
+        });
+      });
+
+      // Load Resize 
+      $(window).on("load resize", function(event) { 
+        var windowWidth = $(window).width();       
+        if (windowWidth<1010) {
+          $('body').addClass('small-device'); 
+        } else {
+          $('body').removeClass('small-device');  
+        } 
+      });
+    </script>
 </body>
 </html>
