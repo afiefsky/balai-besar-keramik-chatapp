@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 11, 2019 at 04:52 PM
+-- Generation Time: Apr 08, 2019 at 08:14 AM
 -- Server version: 5.7.25-0ubuntu0.18.04.2
--- PHP Version: 7.2.16-1+ubuntu18.04.1+deb.sury.org+1
+-- PHP Version: 7.3.3-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -49,7 +49,9 @@ INSERT INTO `chats` (`id`, `topic`, `created_at`) VALUES
 (20, 'spectra', '2017-08-22 15:55:38'),
 (21, 'yuhu', '2017-08-22 17:15:21'),
 (22, '121', '2019-03-08 02:41:10'),
-(23, 'Abstergo', '2019-03-11 09:10:53');
+(23, 'Abstergo', '2019-03-11 09:10:53'),
+(24, '113', '2019-03-12 07:27:12'),
+(25, 'Kos Kosan Bu Rijah', '2019-03-25 07:11:58');
 
 -- --------------------------------------------------------
 
@@ -113,7 +115,20 @@ INSERT INTO `chats_messages` (`id`, `chat_id`, `user_id`, `content`, `is_image`,
 (25, 22, 1, 'logo2.png', 1, '0', '0', '2019-03-11 09:47:28'),
 (26, 22, 1, 'logo21.png', 1, '0', '0', '2019-03-11 09:47:32'),
 (27, 22, 1, 'Aeon1.png', 1, '0', '0', '2019-03-11 09:49:04'),
-(28, 22, 1, 'logo.jpeg', 1, '0', '0', '2019-03-11 09:49:45');
+(28, 22, 1, 'logo.jpeg', 1, '0', '0', '2019-03-11 09:49:45'),
+(29, 12, 1, 'tesy', 0, '0', NULL, '2019-03-12 04:12:13'),
+(30, 12, 1, 'ayy', 0, '0', NULL, '2019-03-12 04:12:42'),
+(31, 24, 1, 'Hello', 0, '0', NULL, '2019-03-12 07:27:23'),
+(32, 24, 13, 'Halo Pip', 0, '0', NULL, '2019-03-12 07:27:49'),
+(33, 24, 13, 'aye', 0, '0', NULL, '2019-03-12 08:01:19'),
+(34, 24, 1, 'aye', 0, '0', NULL, '2019-03-12 08:07:31'),
+(35, 24, 13, 'oooooi', 0, '0', NULL, '2019-03-12 08:15:18'),
+(36, 24, 13, 'ayeaey', 0, '0', NULL, '2019-03-12 08:15:20'),
+(37, 24, 13, 'green-circle.png', 1, '0', '0', '2019-03-12 08:15:27'),
+(38, 24, 1, 'Halo', 0, '0', NULL, '2019-03-21 04:22:59'),
+(39, 24, 1, 'Screenshot_from_2019-03-21_11-12-51.png', 1, '0', '0', '2019-03-21 04:23:10'),
+(40, 24, 13, 'halo fif', 0, '0', NULL, '2019-03-25 07:09:38'),
+(41, 24, 1, 'halo bujank', 0, '0', NULL, '2019-03-25 07:09:48');
 
 -- --------------------------------------------------------
 
@@ -127,6 +142,14 @@ CREATE TABLE `dashboard` (
   `messages` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dashboard`
+--
+
+INSERT INTO `dashboard` (`id`, `user_id`, `messages`, `created_at`) VALUES
+(1, 13, 'Dont forget brother', '2019-03-25 07:10:44'),
+(2, 1, 'You doubt it', '2019-03-25 07:10:52');
 
 -- --------------------------------------------------------
 
@@ -142,6 +165,13 @@ CREATE TABLE `groups_chats` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `groups_chats`
+--
+
+INSERT INTO `groups_chats` (`id`, `chat_id`, `created_by`, `total_member`, `created_at`) VALUES
+(1, 25, 13, 1, '2019-03-25 07:11:58');
+
 -- --------------------------------------------------------
 
 --
@@ -154,6 +184,13 @@ CREATE TABLE `groups_members` (
   `user_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `groups_members`
+--
+
+INSERT INTO `groups_members` (`id`, `group_id`, `user_id`, `created_at`) VALUES
+(1, 1, 13, '2019-03-25 07:11:59');
 
 -- --------------------------------------------------------
 
@@ -180,7 +217,8 @@ INSERT INTO `uri_segments` (`id`, `first`, `second`, `chat_id`, `created_at`) VA
 (11, 9, 1, 14, '2017-08-14 01:24:51'),
 (12, 11, 1, 15, '2017-08-22 14:23:17'),
 (13, 11, 5, 16, '2017-08-22 14:29:52'),
-(14, 12, 1, 22, '2019-03-08 02:41:10');
+(14, 12, 1, 22, '2019-03-08 02:41:10'),
+(15, 1, 13, 24, '2019-03-12 07:27:12');
 
 -- --------------------------------------------------------
 
@@ -199,7 +237,7 @@ CREATE TABLE `users` (
   `division` varchar(100) NOT NULL,
   `avatar` text,
   `is_logged_in` tinyint(1) NOT NULL,
-  `is_activated` enum('0','1') DEFAULT NULL,
+  `is_activated` enum('0','1') DEFAULT '1',
   `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -209,16 +247,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `email`, `first_name`, `last_name`, `division`, `avatar`, `is_logged_in`, `is_activated`, `last_login`) VALUES
 (0, 'admin', 'admin', '0', 'admin@mail.com', 'admin', 'admin', 'admin', 'logo1.png', 0, '1', '2017-09-04 07:56:32'),
-(1, 'afiefsky', 'nothing', '1', 'afiefsky@gmail.com', 'Muhammad Afief', 'Farista', '', 'YO2jGz3.jpg', 1, '1', '2019-03-10 17:00:00'),
-(4, 'tsabitkun', 'nothing', '1', 'tsabitkun@gmail.com', 'Tsabit Abdul', 'Aziz', '', 'logo.png', 0, '1', '2017-09-04 07:58:02'),
-(5, 'falon', 'nothing', '1', 'falonvoa@gmail.com', 'Falon', 'Trecks', '', '167003.jpg', 0, '1', '2017-08-23 00:52:56'),
-(6, 'havok', 'nothing', '1', 'havok@gmail.com', 'Havok', 'Blaster', '', '1.png', 0, '1', '2017-09-04 07:44:34'),
-(7, 'agus', 'nothing', '1', 'agus', 'Agus', 'Mulyadi', 'Staff Dosen', NULL, 0, NULL, '2017-08-13 04:47:02'),
-(8, 'wan_gaazid', 'qwerty86', '1', 'wanspartangaazid@gmail.com', 'wawan', 'setiawan', 'humas', NULL, 0, NULL, '2017-08-13 04:47:02'),
-(9, 'setiawan', 'qwerty12345', '1', 'setiawan@gmail.com', 'wawan', 'Setiawan', 'humas publikasi', 'IMG_20160109_120132_1_1.jpg', 0, NULL, '2017-08-14 01:32:31'),
-(10, 'solomon', 'nothing', '1', 'solomon@gmail.com', 'Solomon', 'Vendy', 'Pegawai', 'default.jpeg', 1, '1', '2017-08-22 17:00:00'),
-(11, 'garfield', 'nothing', '1', 'garfield@gmail.com', 'Garfield', 'Bennington', 'Pudir 100', 'default.jpeg', 1, '1', '2017-08-21 17:00:00'),
-(12, 'iwisesa', 'nothing', '1', 'iwisesa@gmail.com', 'Ibnu', 'Wisesa', '-', 'default.jpeg', 1, '1', '2019-03-10 17:00:00');
+(1, 'afiefsky', 'nothing', '1', 'afiefsky@gmail.com', 'Muhammad Afief', 'Farista', 'Full Stack Developer', 'user_default.png', 0, '1', '2019-04-02 04:03:18'),
+(13, 'tsabitkun', 'nothing', '1', 'tsabitkun@gmail.com', 'Tsabit Abdul', 'Aziz', 'Full Stack Developer', 'user_default.png', 0, '1', '2019-04-02 04:03:25');
 
 --
 -- Indexes for dumped tables
@@ -280,7 +310,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `chats_details`
@@ -292,37 +322,37 @@ ALTER TABLE `chats_details`
 -- AUTO_INCREMENT for table `chats_messages`
 --
 ALTER TABLE `chats_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `dashboard`
 --
 ALTER TABLE `dashboard`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `groups_chats`
 --
 ALTER TABLE `groups_chats`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `groups_members`
 --
 ALTER TABLE `groups_members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `uri_segments`
 --
 ALTER TABLE `uri_segments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
