@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 08, 2019 at 08:14 AM
+-- Generation Time: Apr 12, 2019 at 06:08 PM
 -- Server version: 5.7.25-0ubuntu0.18.04.2
 -- PHP Version: 7.3.3-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -128,7 +128,12 @@ INSERT INTO `chats_messages` (`id`, `chat_id`, `user_id`, `content`, `is_image`,
 (38, 24, 1, 'Halo', 0, '0', NULL, '2019-03-21 04:22:59'),
 (39, 24, 1, 'Screenshot_from_2019-03-21_11-12-51.png', 1, '0', '0', '2019-03-21 04:23:10'),
 (40, 24, 13, 'halo fif', 0, '0', NULL, '2019-03-25 07:09:38'),
-(41, 24, 1, 'halo bujank', 0, '0', NULL, '2019-03-25 07:09:48');
+(41, 24, 1, 'halo bujank', 0, '0', NULL, '2019-03-25 07:09:48'),
+(42, 24, 1, 'hadir', 0, '0', NULL, '2019-04-08 04:18:17'),
+(43, 24, 1, 'test', 0, '0', NULL, '2019-04-08 04:18:20'),
+(44, 24, 1, 'tesla', 0, '0', NULL, '2019-04-08 04:18:22'),
+(45, 24, 13, 'masuk', 0, '0', NULL, '2019-04-08 04:19:29'),
+(46, 24, 1, 'oit', 0, '0', NULL, '2019-04-08 04:19:36');
 
 -- --------------------------------------------------------
 
@@ -247,8 +252,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `email`, `first_name`, `last_name`, `division`, `avatar`, `is_logged_in`, `is_activated`, `last_login`) VALUES
 (0, 'admin', 'admin', '0', 'admin@mail.com', 'admin', 'admin', 'admin', 'logo1.png', 0, '1', '2017-09-04 07:56:32'),
-(1, 'afiefsky', 'nothing', '1', 'afiefsky@gmail.com', 'Muhammad Afief', 'Farista', 'Full Stack Developer', 'user_default.png', 0, '1', '2019-04-02 04:03:18'),
-(13, 'tsabitkun', 'nothing', '1', 'tsabitkun@gmail.com', 'Tsabit Abdul', 'Aziz', 'Full Stack Developer', 'user_default.png', 0, '1', '2019-04-02 04:03:25');
+(1, 'afiefsky', 'nothing', '1', 'afiefsky@gmail.com', 'Muhammad Afief', 'Farista', 'Full Stack Developer', 'user_default.png', 1, '1', '2019-04-07 17:00:00'),
+(13, 'tsabitkun', 'nothing', '1', 'tsabitkun@gmail.com', 'Tsabit Abdul', 'Aziz', 'Full Stack Developer', 'user_default.png', 1, '1', '2019-04-07 17:00:00');
 
 --
 -- Indexes for dumped tables
@@ -322,7 +327,7 @@ ALTER TABLE `chats_details`
 -- AUTO_INCREMENT for table `chats_messages`
 --
 ALTER TABLE `chats_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `dashboard`
