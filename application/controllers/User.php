@@ -32,6 +32,7 @@ class User extends CI_Controller
         }
     }
 
+    /* User profile settings */
     public function setting()
     {
         $id = $this->uri->segment(3);
@@ -75,7 +76,7 @@ class User extends CI_Controller
             $data['record'] = $this->user->getOne($id)->row_array();
             $data['photo'] = 1;
 
-            $this->template->load('template/main_template', 'user/setting/index', $data);
+            $this->template->load('template/new_template', 'user/setting/index', $data);
         } else {
             /* Button foto on view */
             $id = $this->uri->segment(3);
@@ -83,7 +84,7 @@ class User extends CI_Controller
             $data['record'] = $this->user->getOne($id)->row_array();
             $data['photo'] = 0;
 
-            $this->template->load('template/main_template', 'user/setting/index', $data);
+            $this->template->load('template/new_template', 'user/setting/index', $data);
         }
     }
 }

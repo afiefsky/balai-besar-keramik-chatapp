@@ -2,16 +2,14 @@
 <br>
 <br>
 <table class="table table-bordered">
-  <tr>
-    <thead>
-      <tr>
-        <th>No</th>
-        <th>Username</th>
-        <th>Status</th>
-        <th>Aksi</th>
-      </tr>
-    </thead>
-  </tr>
+  <thead>
+    <tr>
+      <th>No</th>
+      <th>Username</th>
+      <th>Status</th>
+      <th>Aksi</th>
+    </tr>
+  </thead>
   <tbody>
     <?php
     $no = 0;

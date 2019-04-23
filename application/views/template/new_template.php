@@ -73,7 +73,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <?php echo anchor('dashboard', '<i class="menu-icon fa fa-laptop"></i>Dahsboard'); ?>
+                        <?php echo anchor('dashboard', '<i class="menu-icon fa fa-laptop"></i>Dashboard'); ?>
                     </li>
                     <!-- <li class="menu-title">UI elements</li> -->
                     <!-- <li class="menu-item-has-children dropdown">
@@ -238,13 +238,17 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="<?php echo base_url(); ?>assets/ela-admin/images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="<?php echo base_url(); ?>uploads/avatars/<?php echo $this->session->userdata('avatar'); ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <?php 
+                                echo anchor('user/setting/' . $this->session->userdata('user_id'),
+                                            '<i class="fa fa-power -off"></i>Profile',
+                                            ['class' => 'nav-link']);
+                            ?>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
                             
@@ -260,7 +264,7 @@
         <div class="content">
             <!-- Animated -->
             <div class="animated fadeIn">
-                <div class="row">
+                <div class="row" id="contents">
                     <?php echo $contents; ?>
                 </div>
             </div>
@@ -303,8 +307,8 @@
     <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/ela-admin/assets/js/init/weather-init.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script> -->
+    <!-- <script src="<?php echo base_url(); ?>assets/ela-admin/assets/js/init/weather-init.js"></script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>

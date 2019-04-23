@@ -97,7 +97,7 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <?php echo anchor('dashboard', '<i class="menu-icon fa fa-laptop"></i>Dahsboard'); ?>
+                        <?php echo anchor('dashboard', '<i class="menu-icon fa fa-laptop"></i>Dashboard'); ?>
                     </li>
                     <!-- <li class="menu-title">UI elements</li> -->
                     <!-- <li class="menu-item-has-children dropdown">
@@ -266,9 +266,9 @@
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <?php echo anchor('auth/logout', '<i class="fa fa- user"></i>Profile', ['class' => 'nav-link']); ?>
 
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+                            <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
                             
@@ -284,7 +284,7 @@
         <div class="content">
             <!-- Animated -->
             <div class="animated fadeIn">
-                <div class="row">
+                <div class="row" id="contents">
                     <?php echo $contents; ?>
                 </div>
             </div>
