@@ -262,17 +262,17 @@
 
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="<?php echo base_url(); ?>assets/ela-admin/images/admin.jpg" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" src="<?php echo base_url(); ?>uploads/avatars/<?php echo $this->session->userdata('avatar'); ?>" alt="User Avatar">
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                            <?php echo anchor('auth/logout', '<i class="fa fa- user"></i>Profile', ['class' => 'nav-link']); ?>
-
+                            <li><?php echo anchor('auth/logout', '<i class="fa fa- user"></i>Profile', ['class' => 'nav-link']); ?></li>
+                            
                             <!-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a> -->
                             
-                            <?php echo anchor('auth/logout', '<i class="fa fa-power -off"></i>Logout', ['class' => 'nav-link']); ?>
+                            <li><?php echo anchor('auth/logout', '<i class="fa fa-power -off"></i>Logout', ['class' => 'nav-link']); ?></li>
                         </div>
                     </div>
 
@@ -308,8 +308,8 @@
         <!-- /.site-footer -->
     </div>
     <!-- /#right-panel -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script type="text/javascript">
       [].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {

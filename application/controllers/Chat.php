@@ -242,6 +242,8 @@ class Chat extends CI_Controller
      */
     public function _get_chats_messages($chat_id)
     {
+        $myId = $this->session->userdata('user_id');
+        
         $last_chat_message_id = (int) $this->session->userdata('last_chat_message_id_' . $chat_id);
 
         /* Executing the method on model */
@@ -263,7 +265,7 @@ class Chat extends CI_Controller
                 $avatar = $record['avatar'];
 
                 $li_class = ($this->session->userdata('user_id') == $chats_messages->user_id) ?
-                    'class="by_current_user"' : '';
+                    'class="by_current_user"' : 'style="text-align: right;"';
 
                 if ($chats_messages->is_image == '0') {
                     if ($chats_messages->is_doc == '1') {

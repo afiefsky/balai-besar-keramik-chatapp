@@ -67,7 +67,7 @@ $(document).ready(function() {
                     var current_content = $("div#chat_viewport").html();
 
                     $("div#chat_viewport").html(current_content + data.content);
-                    
+
                     if (!data.content == '') {
                         // var notification = new Notification('Notification title', {
                         //   icon: '',
