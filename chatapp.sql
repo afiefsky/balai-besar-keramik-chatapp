@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2019 at 06:08 PM
+-- Generation Time: Apr 24, 2019 at 05:03 PM
 -- Server version: 5.7.25-0ubuntu0.18.04.2
--- PHP Version: 7.3.3-1+ubuntu18.04.1+deb.sury.org+1
+-- PHP Version: 7.3.4-1+ubuntu18.04.1+deb.sury.org+3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -133,7 +133,22 @@ INSERT INTO `chats_messages` (`id`, `chat_id`, `user_id`, `content`, `is_image`,
 (43, 24, 1, 'test', 0, '0', NULL, '2019-04-08 04:18:20'),
 (44, 24, 1, 'tesla', 0, '0', NULL, '2019-04-08 04:18:22'),
 (45, 24, 13, 'masuk', 0, '0', NULL, '2019-04-08 04:19:29'),
-(46, 24, 1, 'oit', 0, '0', NULL, '2019-04-08 04:19:36');
+(46, 24, 1, 'oit', 0, '0', NULL, '2019-04-08 04:19:36'),
+(47, 24, 1, 'Hello', 0, '0', NULL, '2019-04-23 02:42:15'),
+(48, 24, 13, 'Hello from the other side', 0, '0', NULL, '2019-04-23 02:42:44'),
+(49, 24, 1, 'Jank', 0, '0', NULL, '2019-04-23 02:42:55'),
+(50, 24, 1, 'Bujank', 0, '0', NULL, '2019-04-23 02:42:56'),
+(51, 24, 13, 'Oit oit', 0, '0', NULL, '2019-04-23 02:43:01'),
+(52, 24, 1, 'test', 0, '0', NULL, '2019-04-24 02:44:22'),
+(53, 24, 1, 'oit', 0, '0', NULL, '2019-04-24 02:46:57'),
+(54, 24, 1, 'aye', 0, '0', NULL, '2019-04-24 02:47:00'),
+(55, 24, 1, 'hadir', 0, '0', NULL, '2019-04-24 02:47:16'),
+(56, 24, 1, 'ouch', 0, '0', NULL, '2019-04-24 02:47:21'),
+(57, 24, 1, 'test', 0, '0', NULL, '2019-04-24 02:48:16'),
+(58, 24, 13, 'halo', 0, '0', NULL, '2019-04-24 02:49:01'),
+(59, 24, 1, 'hadir', 0, '0', NULL, '2019-04-24 03:03:16'),
+(60, 24, 1, 'gimana nih', 0, '0', NULL, '2019-04-24 03:03:18'),
+(61, 24, 13, 'bacot', 0, '0', NULL, '2019-04-24 03:03:25');
 
 -- --------------------------------------------------------
 
@@ -252,8 +267,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `email`, `first_name`, `last_name`, `division`, `avatar`, `is_logged_in`, `is_activated`, `last_login`) VALUES
 (0, 'admin', 'admin', '0', 'admin@mail.com', 'admin', 'admin', 'admin', 'logo1.png', 0, '1', '2017-09-04 07:56:32'),
-(1, 'afiefsky', 'nothing', '1', 'afiefsky@gmail.com', 'Muhammad Afief', 'Farista', 'Full Stack Developer', 'user_default.png', 1, '1', '2019-04-07 17:00:00'),
-(13, 'tsabitkun', 'nothing', '1', 'tsabitkun@gmail.com', 'Tsabit Abdul', 'Aziz', 'Full Stack Developer', 'user_default.png', 1, '1', '2019-04-07 17:00:00');
+(1, 'afiefsky', 'nothing', '1', 'afiefsky@gmail.com', 'Muhammad Afief', 'Farista', 'Full Stack Developer', 'Aeon.png', 1, '1', '2019-04-23 17:00:00'),
+(13, 'tsabitkun', 'nothing', '1', 'tsabitkun@gmail.com', 'Tsabit Abdul', 'Aziz', 'Full Stack Developer', 'user_default.png', 1, '1', '2019-04-23 17:00:00');
 
 --
 -- Indexes for dumped tables
@@ -327,7 +342,7 @@ ALTER TABLE `chats_details`
 -- AUTO_INCREMENT for table `chats_messages`
 --
 ALTER TABLE `chats_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `dashboard`
