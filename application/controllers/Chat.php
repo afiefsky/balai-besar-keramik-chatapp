@@ -3,9 +3,7 @@
 class Chat extends CI_Controller
 {
 
-    /**
-     * Chat Controller Constructor
-     */
+    /* Chat Controller Constructor */
     public function __construct()
     {
         parent::__construct();
@@ -17,6 +15,7 @@ class Chat extends CI_Controller
         $this->group = $this->Group_model;
     }
 
+    /* Group Chats */
     public function group()
     {
         /* Get all chatroom of group*/
@@ -24,9 +23,7 @@ class Chat extends CI_Controller
         $this->template->load('template/dashboard_template', 'chat/group/index', $data);
     }
 
-    /**
-     * Chat Index
-     */
+    /* Chat Index */
     public function index()
     {
         // $first_segment = $this->uri->segment(3);
@@ -144,9 +141,7 @@ class Chat extends CI_Controller
         }
     }
 
-    /**
-     * Redirect method
-     */
+    /* Redirect method */
     public function redirect()
     {
         $first_id = $this->uri->segment(3);
@@ -212,9 +207,7 @@ class Chat extends CI_Controller
         $this->load->view('chat/video');
     }
 
-    /**
-     * Ajax Add Chat Message
-     */
+    /* Ajax Add Chat Message */
     public function ajax_add_chat_message()
     {
         /* Posting */
