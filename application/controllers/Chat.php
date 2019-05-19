@@ -34,12 +34,13 @@ class Chat extends CI_Controller
         /* If the chat_id on the uri segment 3 is blank */
         if (empty($chat_id = $this->uri->segment(3))) {
             $chat_id = $this->uri->segment(2);
-            if ($chat_id === 'index') redirect('dashboard');
+            if ($chat_id === 'index') {
+                redirect('dashboard');
+            }
         }
 
         if (isset($_POST['submit'])) {
             // chmod(base_url() . 'uploads/', 0777);
-
 
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc|sql|xlsx|xls|ppt|pptx';
