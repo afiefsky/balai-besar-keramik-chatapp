@@ -57,26 +57,21 @@ class Auth extends CI_Controller
                 $this->user->logged($this->session->userdata('user_id'));
 
                 redirect('dashboard');
-
             } elseif ($verify == 2) {
                 $this->session->set_userdata('error', 'Silahkan minta admin untuk memberikan verifikasi terhadap akun anda!');
                 redirect('auth/login');
-
             } else {
                 /* Destory session if failed */
                 // $this->session->sess_destroy();
                 $this->session->set_userdata(['error' => 'Error!! Username dan password tidak valid!!']);
                 redirect('auth/login');
-
             } // End if $verify == 1.
         } elseif (isset($_POST['submit_register'])) {
             redirect('auth/register');
-
         } else {
             $data['error'] = $this->session->userdata('error');
 
             $this->template->load('template/login_template', 'auth/index', $data);
-
         } // End if isset $_POST Submit.
     }
 
@@ -84,20 +79,18 @@ class Auth extends CI_Controller
     {
         if (isset($_POST['submit'])) {
             $data['first_name'] = $this->input->post('first_name');
-            $data['last_name']  = $this->input->post('last_name');
-            $data['division']   = $this->input->post('division');
-            $data['email']      = $this->input->post('email');
-            $data['username']   = $this->input->post('username');
-            $data['password']   = $this->input->post('password');
-            $data['avatar']     = 'default.jpeg';
+            $data['last_name'] = $this->input->post('last_name');
+            $data['division'] = $this->input->post('division');
+            $data['email'] = $this->input->post('email');
+            $data['username'] = $this->input->post('username');
+            $data['password'] = $this->input->post('password');
+            $data['avatar'] = 'default.jpeg';
 
             $this->db->insert('users', $data);
 
             redirect('auth');
-
         } else {
             $this->template->load('template/login_template', 'register/index');
-
         } // End if isset $_POST submit.
     }
 
@@ -110,5 +103,4 @@ class Auth extends CI_Controller
 
         redirect('auth/index');
     }
-
 }
