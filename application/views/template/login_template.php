@@ -9,7 +9,7 @@
 
     <style>
         /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
-        
+
         @import url(https://fonts.googleapis.com/css?family=Open+Sans);
         .btn {
             display: inline-block;
@@ -44,7 +44,7 @@
             cursor: pointer;
             *margin-left: .3em;
         }
-        
+
         .btn:hover,
         .btn:active,
         .btn.active,
@@ -52,7 +52,7 @@
         .btn[disabled] {
             background-color: #e6e6e6;
         }
-        
+
         .btn-large {
             padding: 9px 14px;
             font-size: 15px;
@@ -61,7 +61,7 @@
             -moz-border-radius: 5px;
             border-radius: 5px;
         }
-        
+
         .btn:hover {
             color: #333333;
             text-decoration: none;
@@ -73,17 +73,17 @@
             -o-transition: background-position 0.1s linear;
             transition: background-position 0.1s linear;
         }
-        
+
         .btn-primary,
         .btn-primary:hover {
             text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
             color: #ffffff;
         }
-        
+
         .btn-primary.active {
             color: rgba(255, 255, 255, 0.75);
         }
-        
+
         .btn-primary {
             background-color: #4a77d4;
             background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4);
@@ -98,7 +98,7 @@
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
             box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5);
         }
-        
+
         .btn-primary:hover,
         .btn-primary:active,
         .btn-primary.active,
@@ -107,12 +107,12 @@
             filter: none;
             background-color: #4a77d4;
         }
-        
+
         .btn-block {
             width: 100%;
             display: block;
         }
-        
+
         * {
             -webkit-box-sizing: border-box;
             -moz-box-sizing: border-box;
@@ -120,13 +120,13 @@
             -o-box-sizing: border-box;
             box-sizing: border-box;
         }
-        
+
         html {
             width: 100%;
             height: 100%;
             overflow: hidden;
         }
-        
+
         body {
             width: 100%;
             height: 100%;
@@ -139,23 +139,23 @@
             background: -webkit-radial-gradient(0% 100%, ellipse cover, rgba(104, 128, 138, .4) 10%, rgba(138, 114, 76, 0) 40%), linear-gradient(to bottom, rgba(57, 173, 219, .25) 0%, rgba(42, 60, 87, .4) 100%), linear-gradient(135deg, #670d10 0%, #092756 100%);
             filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#3E1D6D', endColorstr='#092756', GradientType=1);
         }
-        
+
         .login {
             position: absolute;
-            top: 50%;
+            top: 30%;
             left: 50%;
             margin: -150px 0 0 -150px;
             width: 300px;
             height: 300px;
         }
-        
+
         .login h1 {
             color: #fff;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             letter-spacing: 1px;
             text-align: center;
         }
-        
+
         input {
             width: 100%;
             margin-bottom: 10px;
@@ -175,7 +175,7 @@
             -ms-transition: box-shadow .5s ease;
             transition: box-shadow .5s ease;
         }
-        
+
         input:focus {
             box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
         }
