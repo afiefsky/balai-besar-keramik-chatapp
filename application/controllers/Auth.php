@@ -2,7 +2,6 @@
 
 class Auth extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -25,13 +24,12 @@ class Auth extends CI_Controller
 
     public function login()
     {
-        if (isset($_POST['submit']))
-        {
+        if (isset($_POST['submit'])) {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
 
             /**
-             *  Verify process and storing user_id to session
+             *  Verify process and storing user_id to session.
              */
             $verify = $this->auth->verify($username, $password);
 
@@ -61,7 +59,7 @@ class Auth extends CI_Controller
             // $this->load->view('auth/index');
         }
     }
-    
+
     public function register()
     {
         if (isset($_POST['submit'])) {
@@ -72,7 +70,7 @@ class Auth extends CI_Controller
             $data['username'] = $this->input->post('username');
             $data['password'] = $this->input->post('password');
             $data['avatar'] = 'default.jpeg';
-            
+
             $this->db->insert('users', $data);
 
             redirect('auth');

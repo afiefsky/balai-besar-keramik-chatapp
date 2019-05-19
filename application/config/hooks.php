@@ -1,5 +1,6 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -12,8 +13,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$hook['post_controller_constructor'][] = array(
+$hook['post_controller_constructor'][] = [
                                             'function' => 'redirect_ssl',
                                             'filename' => 'ssl.php',
-                                            'filepath' => 'hooks'
-                                          );
+                                            'filepath' => 'hooks',
+                                          ];

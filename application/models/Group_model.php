@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 class Group_model extends CI_Model
 {
     public function __construct()
@@ -12,6 +13,7 @@ class Group_model extends CI_Model
         $this->db->from('groups_chats as group, chats as chats, users as users');
         $this->db->where('group.chat_id = chats.id');
         $this->db->where('group.created_by = users.id');
+
         return $this->db->get();
     }
 

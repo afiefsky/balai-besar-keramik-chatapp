@@ -26,7 +26,7 @@
       <div id="chat_input">
         <!-- <input type="text" name="chat_message" id="chat_message" value="" tabindex="1" /> -->
         <input type="text" name="chat_message" id="chat_message" />
-        <?php echo anchor('#', 'Enter', array('title' => 'Send this chat message', 'id' => 'submit_message', 'class' => 'btn btn-default btn-sm')); ?>
+        <?php echo anchor('#', 'Enter', ['title' => 'Send this chat message', 'id' => 'submit_message', 'class' => 'btn btn-default btn-sm']); ?>
         <div class="clearer"></div>
       </div>
     </td>
@@ -70,19 +70,19 @@
         <?php
         if ($video == 0) {
             if ($audio == 0) {
-                echo "audio: false,
-                  video: false";
+                echo 'audio: false,
+                  video: false';
             } elseif ($audio == 1) {
-                echo "audio: true,
-                  video: false";
+                echo 'audio: true,
+                  video: false';
             }
         } elseif ($video == 1) {
             if ($audio == 0) {
-                echo "audio: false,
-                  video: true";
+                echo 'audio: false,
+                  video: true';
             } elseif ($audio == 1) {
-                echo "audio: true,
-                  video: true";
+                echo 'audio: true,
+                  video: true';
             }
         }
         ?>

@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 
 class Group extends CI_Controller
 {
@@ -34,7 +35,7 @@ class Group extends CI_Controller
 
                 $this->db->insert('groups_chats', $group);
 
-                $group_member['group_id'] = $this->db->insert_id();;
+                $group_member['group_id'] = $this->db->insert_id();
                 $group_member['user_id'] = $this->session->userdata('user_id');
                 $this->db->insert('groups_members', $group_member);
 
@@ -51,21 +52,21 @@ class Group extends CI_Controller
         $data['user_id'] = $this->session->userdata('user_id');
 
         /**
-         * 1. check if the user is already registered on groups_members table
-         */ 
+         * 1. check if the user is already registered on groups_members table.
+         */
         $check = $this->group->check($this->session->userdata('user_id'), $this->uri->segment(3));
 
         if ($check == 1) {
             redirect('group/index/'.$this->uri->segment(3));
         } else {
             $this->db->insert('groups_members', $data);
-            $this->db->query("UPDATE groups_chats SET total_member = total_member + 1 WHERE id = ".$this->uri->segment(3));
+            $this->db->query('UPDATE groups_chats SET total_member = total_member + 1 WHERE id = '.$this->uri->segment(3));
             redirect('group/index/'.$this->uri->segment(3));
         }
     }
 
     /**
-     * Chat Index
+     * Chat Index.
      */
     public function index()
     {
@@ -76,25 +77,25 @@ class Group extends CI_Controller
 
         if (isset($_POST['submit'])) {
             $id = $this->uri->segment(3);
-            $config['upload_path']          = './uploads/';
-            $config['allowed_types']        = 'gif|jpg|png';
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png';
 
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload('userfile')) {
                 redirect('chat/index/'.$id);
             } else {
-                $data = array('upload_data' => $this->upload->data());
+                $data = ['upload_data' => $this->upload->data()];
 
                 $chat_id = $this->uri->segment(3);
                 $user_id = $this->session->userdata('user_id');
                 $content = $data['upload_data']['file_name'];
 
                 $data = [
-                    'chat_id' => $chat_id,
-                    'user_id' => $user_id,
-                    'content' => $content,
-                    'is_image' => 1
+                    'chat_id'  => $chat_id,
+                    'user_id'  => $user_id,
+                    'content'  => $content,
+                    'is_image' => 1,
                 ];
 
                 $this->db->insert('chats_messages', $data);
@@ -157,7 +158,7 @@ class Group extends CI_Controller
 
             $this->view_data['audio'] = $this->session->userdata('audio');
             $this->view_data['video'] = $this->session->userdata('video');
-            
+
             $this->chat_component($chat_id);
         }
     }
@@ -172,7 +173,7 @@ class Group extends CI_Controller
         $this->view_data['chat_id'] = $chat_id;
         $this->view_data['user_id'] = $this->session->userdata('user_id');
 
-        $this->session->set_userdata('last_chat_message_id_' . $this->view_data['chat_id'], 0);
+        $this->session->set_userdata('last_chat_message_id_'.$this->view_data['chat_id'], 0);
 
         $this->template->load('template/main_template', 'chat/group/chat', $this->view_data);
     }

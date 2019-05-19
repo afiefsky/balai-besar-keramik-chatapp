@@ -4,10 +4,10 @@
   <title>Chat App</title>
 
   <!-- Ajax -->
-  <script type="text/javascript" src="<?php echo base_url() . 'assets/js/'; ?>jquery.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>jquery.min.js"></script>
 
   <!-- Chat js -->
-  <script type="text/javascript" src="<?php echo base_url() . 'assets/js/'; ?>chat.js"></script>
+  <script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>chat.js"></script>
 
   <!-- Chat ID and User ID declaration for Ajax  -->
   <script type="text/javascript">

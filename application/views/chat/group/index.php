@@ -18,16 +18,16 @@
   <?php
   $no = 0;
   foreach ($record->result() as $r) {
-    $no++;
-    echo "<tr>
+      $no++;
+      echo "<tr>
       <td>$no</td>
       <td>$r->topic</td>
       <td>$r->first_name $r->last_name</td>
       <td>$r->total_member</td>
       <td>".
-        anchor('group/check/'. $r->group_id, 'Chat', ['class' => 'btn btn-success btn-sm'])
-      ."</td>
-    </tr>";
+        anchor('group/check/'.$r->group_id, 'Chat', ['class' => 'btn btn-success btn-sm'])
+      .'</td>
+    </tr>';
   }
   ?>
   </tbody>
