@@ -17,10 +17,9 @@
     <button type="submit" name="submit" class="btn btn-primary btn-block btn-large">Login</button>
   </form>
   <p>
-    <?php echo anchor('auth/register', 'Baru? Buat akun di sini.', ['class' => '']) ?>
+    <?php echo anchor('auth/register', 'Baru? Buat akun di sini.', ['style' => 'color: aqua;']); ?>
   </p>
 </div>
-<!-- <?php echo anchor('auth/register', 'Register', ['class' => 'btn btn-lg btn-info btn-block']); ?> -->
 <?php
     echo form_close();
 ?>
