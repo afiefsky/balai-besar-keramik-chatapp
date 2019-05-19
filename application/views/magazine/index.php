@@ -17,7 +17,7 @@ echo form_open('magazine');
         <th><center />Pesan</th>
     </tr>
     <?php
-    foreach ($record->result() AS $r) {
+    foreach ($record->result() as $r) {
         echo "<tr>
             <td width='13%' align='center'>$r->created_at</td>
             <td width='13%' align='center'>$r->first_name</td>

@@ -36,8 +36,8 @@
             <td>$aktif_status</td>
             <td>".
                 $button_activate
-            ."</td>
-        </tr>";
+            .'</td>
+        </tr>';
     }
     ?>
 </table>

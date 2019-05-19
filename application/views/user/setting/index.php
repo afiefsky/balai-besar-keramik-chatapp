@@ -1,4 +1,4 @@
-<?php echo form_open_multipart('user/setting/'. $this->uri->segment(3)); ?>
+<?php echo form_open_multipart('user/setting/'.$this->uri->segment(3)); ?>
 <div class="table-responsive">
     <table class="table table-bordered">
         <thead>

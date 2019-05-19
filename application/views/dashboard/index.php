@@ -18,7 +18,7 @@
         $no++;
 
         if ($r->is_logged_in == 1) {
-            $logged_status = '<b><img src="' . base_url() . 'assets/images/green-circle.png" width="20px" />&nbsp;<u>Online</b>';
+            $logged_status = '<b><img src="'.base_url().'assets/images/green-circle.png" width="20px" />&nbsp;<u>Online</b>';
         } else {
             $logged_status = '<img src="'.base_url().'assets/images/red-circle.png" width="20px" />&nbsp;Offline';
         }
@@ -27,8 +27,8 @@
           <td>$no</td>
           <td>$r->username</td>
           <td>$logged_status</td>
-          <td>". anchor('chat/redirect/'.$this->session->userdata('user_id').'/'.$r->id, 'Chat', ['class' => 'btn btn-primary btn-sm']) ."</td>
-        </tr>";
+          <td>".anchor('chat/redirect/'.$this->session->userdata('user_id').'/'.$r->id, 'Chat', ['class' => 'btn btn-primary btn-sm']).'</td>
+        </tr>';
     }
     ?>
   </tbody>

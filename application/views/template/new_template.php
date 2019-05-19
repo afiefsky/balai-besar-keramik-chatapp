@@ -243,7 +243,7 @@
 
                         <div class="user-menu dropdown-menu">
                             <?php 
-                                echo anchor('user/setting/' . $this->session->userdata('user_id'),
+                                echo anchor('user/setting/'.$this->session->userdata('user_id'),
                                             '<i class="fa fa-power -off"></i>Profile',
                                             ['class' => 'nav-link']);
                             ?>

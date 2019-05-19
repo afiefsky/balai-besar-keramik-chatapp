@@ -6,7 +6,9 @@
   <h1>BBK Login</h1>
   <h4 style="color: white; background: red;">
     <?php
-      if (!!$error) echo $error;
+      if ((bool) $error) {
+          echo $error;
+      }
 
       $this->session->unset_userdata('error');
     ?>
