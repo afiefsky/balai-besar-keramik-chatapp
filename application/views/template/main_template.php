@@ -11,7 +11,7 @@
 
     <title>BBK Chat</title>
     
-    <script type="text/javascript" src="<?php echo base_url() . 'assets/js/'; ?>jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>jquery.min.js"></script>
 
     <!-- User declared javascript for chat app -->
     <script type="text/javascript">
@@ -19,7 +19,7 @@
       var user_id = "<?php echo $user_id; ?>";
     </script>
 
-    <script type="text/javascript" src="<?php echo base_url() . 'assets/js/'; ?>chat.js"></script>
+    <script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>chat.js"></script>
   
     <!-- Simple WebRTC JS -->
     <script src="<?php echo base_url() ?>assets/js/latest-v2.js"></script>
@@ -30,12 +30,12 @@
     <?php
     if ($this->session->userdata('role') == 1) {
         $link = 'assets/css/chat.css';
-      } else {
+    } else {
         $link = 'assets/css/chat_admin.css';
-      }
+    }
     ?>
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url() . $link; ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url().$link; ?>">
 
     <script type="text/javascript">
       var base_url = "<?php echo base_url(); ?>";
@@ -87,18 +87,16 @@
             <li>
             <?php
             if ($this->session->userdata('role') == 1) {
-              echo anchor('magazine', 'Notice Board');
+                echo anchor('magazine', 'Notice Board');
             } else {
-              
             }
             ?>
             </li>
             <li>
             <?php
             if ($this->session->userdata('role') == 1) {
-              echo anchor('chat/group', 'Group Chat');
+                echo anchor('chat/group', 'Group Chat');
             } else {
-              
             }
             ?>
             </li>

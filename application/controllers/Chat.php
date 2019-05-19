@@ -2,7 +2,6 @@
 
 class Chat extends CI_Controller
 {
-
     /* Chat Controller Constructor */
     public function __construct()
     {
@@ -32,11 +31,11 @@ class Chat extends CI_Controller
         // $this->segment->select($first_segment, $second_segment);
 
         if (isset($_POST['submit'])) {
-            // chmod(base_url() . 'uploads/', 0777); 
+            // chmod(base_url() . 'uploads/', 0777);
 
             $id = $this->uri->segment(3);
-            $config['upload_path']          = './uploads/';
-            $config['allowed_types']        = 'gif|jpg|jpeg|png|pdf|docx|doc|sql|xlsx|xls|ppt|pptx';
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc|sql|xlsx|xls|ppt|pptx';
 
             $this->load->library('upload', $config);
 
@@ -44,7 +43,7 @@ class Chat extends CI_Controller
                 die();
                 redirect('chat/index/'.$id);
             } else {
-                $data = array('upload_data' => $this->upload->data());
+                $data = ['upload_data' => $this->upload->data()];
 
                 $file_ext = $data['upload_data']['file_ext'];
 
@@ -54,8 +53,7 @@ class Chat extends CI_Controller
                     $file_ext == '.xls' ||
                     $file_ext == '.xlsx' ||
                     $file_ext == '.ppt' ||
-                    $file_ext == '.pptx')
-                {
+                    $file_ext == '.pptx') {
                     $is_image = '0';
                     $is_doc = '1';
                 } else {
@@ -63,17 +61,16 @@ class Chat extends CI_Controller
                     $is_doc = '0';
                 }
 
-
                 $chat_id = $this->uri->segment(3);
                 $user_id = $this->session->userdata('user_id');
                 $content = $data['upload_data']['file_name'];
 
                 $data = [
-                    'chat_id' => $chat_id,
-                    'user_id' => $user_id,
-                    'content' => $content,
+                    'chat_id'  => $chat_id,
+                    'user_id'  => $user_id,
+                    'content'  => $content,
                     'is_image' => $is_image,
-                    'is_doc' => $is_doc
+                    'is_doc'   => $is_doc,
                 ];
 
                 $this->db->insert('chats_messages', $data);
@@ -136,7 +133,7 @@ class Chat extends CI_Controller
 
             $this->view_data['audio'] = $this->session->userdata('audio');
             $this->view_data['video'] = $this->session->userdata('video');
-            
+
             $this->chat_component($chat_id);
         }
     }
@@ -152,13 +149,13 @@ class Chat extends CI_Controller
         $result = $this->segment->locate($first_id, $second_id);
 
         if ($result == 1) {
-            redirect('chat/index/'. $this->session->userdata('chat_id'));
+            redirect('chat/index/'.$this->session->userdata('chat_id'));
         } else {
             /* Crete the chatroom between two id */
             $chat = $this->chat->create($first_id, $second_id);
 
             if ($chat == 1) {
-                $topic = $first_id . $second_id;
+                $topic = $first_id.$second_id;
 
                 $chat = $this->chat->obtain($topic)->row_array();
 
@@ -169,12 +166,11 @@ class Chat extends CI_Controller
                 $segment = $this->segment->create($data);
 
                 if ($segment == 1) {
-                    redirect('chat/index/'. $data['chat_id']);
+                    redirect('chat/index/'.$data['chat_id']);
                 } else {
-                    echo "Error!!!";
+                    echo 'Error!!!';
                     die();
                 }
-
             }
 
             /* Create the uri segment for locate method */
@@ -192,7 +188,7 @@ class Chat extends CI_Controller
         $this->view_data['chat_id'] = $chat_id;
         $this->view_data['user_id'] = $this->session->userdata('user_id');
 
-        $this->session->set_userdata('last_chat_message_id_' . $this->view_data['chat_id'], 0);
+        $this->session->set_userdata('last_chat_message_id_'.$this->view_data['chat_id'], 0);
 
         $this->template->load('template/new_main_template', 'chat/index', $this->view_data);
     }
@@ -230,14 +226,15 @@ class Chat extends CI_Controller
     }
 
     /**
-     * Ajax Get Chat Message
+     * Ajax Get Chat Message.
+     *
      * @return array
      */
     public function _get_chats_messages($chat_id)
     {
         $myId = $this->session->userdata('user_id');
-        
-        $last_chat_message_id = (int) $this->session->userdata('last_chat_message_id_' . $chat_id);
+
+        $last_chat_message_id = (int) $this->session->userdata('last_chat_message_id_'.$chat_id);
 
         /* Executing the method on model */
         $chats_messages = $this->chat->get_chats_messages($chat_id, $last_chat_message_id);
@@ -248,10 +245,10 @@ class Chat extends CI_Controller
             /* Store the last chat message id */
             $last_chat_message_id = $chats_messages->row($chats_messages->num_rows() - 1)->id;
 
-            $this->session->set_userdata('last_chat_message_id_' . $chat_id, $last_chat_message_id);
+            $this->session->set_userdata('last_chat_message_id_'.$chat_id, $last_chat_message_id);
 
             // return the messages
-            $chats_messages_html = "<ul>";
+            $chats_messages_html = '<ul>';
 
             foreach ($chats_messages->result() as $chats_messages) {
                 $record = $this->db->get_where('users', ['id' => $chats_messages->user_id])->row_array();
@@ -263,62 +260,62 @@ class Chat extends CI_Controller
                 if ($chats_messages->is_image == '0') {
                     if ($chats_messages->is_doc == '1') {
                         $chats_messages_html .=
-                        '<p><li ' . $li_class . '>'
-                            . '<p class="message_content"><img src="'.base_url().'uploads/avatars/'.$avatar.'" height="25" width="25">
+                        '<p><li '.$li_class.'>'
+                            .'<p class="message_content"><img src="'.base_url().'uploads/avatars/'.$avatar.'" height="25" width="25">
                                 <a href="'.base_url().'uploads/'.$chats_messages->content.'" target="_BLANK">
                                     '.$chats_messages->content.'
                                 </a>
                             </p>
-                            <span class="chat_message_header"><b>' .
-                                $chats_messages->timestamp .
-                                ' by ' .
-                                $chats_messages->username .
+                            <span class="chat_message_header"><b>'.
+                                $chats_messages->timestamp.
+                                ' by '.
+                                $chats_messages->username.
                             '</b></span>
                         </li></p>';
                     } else {
                         $chats_messages_html .= '<p>
-                        <li ' . $li_class . '>'
+                        <li '.$li_class.'>'
                         .'<p class="message_content"><img src="'.base_url().'uploads/avatars/'.$avatar.'" height="25" width="25"> '
-                        . $chats_messages->content
+                        .$chats_messages->content
                         .'</p>
                         <span class="chat_message_header"><b>'
-                        . $chats_messages->timestamp
-                        . ' by '
-                        . $chats_messages->username
-                        . '</b></span></li></p>';
+                        .$chats_messages->timestamp
+                        .' by '
+                        .$chats_messages->username
+                        .'</b></span></li></p>';
                     }
                 } else {
                     $chats_messages_html .=
-                        '<p><li ' . $li_class . '>'
-                            . '<p class="message_content"><img src="'.base_url().'uploads/avatars/'.$avatar.'" height="25" width="25">
+                        '<p><li '.$li_class.'>'
+                            .'<p class="message_content"><img src="'.base_url().'uploads/avatars/'.$avatar.'" height="25" width="25">
                                 <a href="'.base_url().'uploads/'.$chats_messages->content.'" target="_BLANK">
                                     <img src="'.base_url().'uploads/'.$chats_messages->content.'" width="100" height="100" />
                                 </a>
                             </p>
-                            <span class="chat_message_header"><b>' .
-                                $chats_messages->timestamp .
-                                ' by ' .
-                                $chats_messages->username .
+                            <span class="chat_message_header"><b>'.
+                                $chats_messages->timestamp.
+                                ' by '.
+                                $chats_messages->username.
                             '</b></span>
                         </li></p>';
                 }
             }
 
-            $chats_messages_html .= "</ul>";
+            $chats_messages_html .= '</ul>';
 
             $result = [
-                'status'    => 'ok',
-                'content'   => $chats_messages_html,
-                'last_chat_message_id' => $last_chat_message_id
+                'status'               => 'ok',
+                'content'              => $chats_messages_html,
+                'last_chat_message_id' => $last_chat_message_id,
             ];
 
             return json_encode($result);
             exit();
         } else {
             $result = [
-                'status'    => 'ok',
-                'content'   => '',
-                'last_chat_message_id' => $last_chat_message_id
+                'status'               => 'ok',
+                'content'              => '',
+                'last_chat_message_id' => $last_chat_message_id,
             ];
 
             return json_encode($result);

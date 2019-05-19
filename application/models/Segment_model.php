@@ -37,9 +37,11 @@ class Segment_model extends CI_Model
     }
 
     /**
-     * Locate the id on uri_segments table
-     * @param int $first_id 
-     * @param int $second_id 
+     * Locate the id on uri_segments table.
+     *
+     * @param int $first_id
+     * @param int $second_id
+     *
      * @return bool
      */
     public function locate($first_id, $second_id)

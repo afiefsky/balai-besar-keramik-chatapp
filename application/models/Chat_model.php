@@ -1,10 +1,10 @@
 <?php
 
-class Chat_model extends CI_Model 
+class Chat_model extends CI_Model
 {
     /**
-     * Chat_model Constructor
-     * 
+     * Chat_model Constructor.
+     *
      * chats = ['id', 'topic', 'user_id', 'created_at']
      * chats_messages = ['id', 'chat_id', 'user_id', 'content', 'created_at']
      * created_at auto timestamp (currentdate)
@@ -16,7 +16,7 @@ class Chat_model extends CI_Model
 
     public function create($first_id, $second_id)
     {
-        $data['topic'] = $first_id . $second_id;
+        $data['topic'] = $first_id.$second_id;
 
         $chat = $this->db->insert('chats', $data);
 
@@ -28,17 +28,19 @@ class Chat_model extends CI_Model
     }
 
     /**
-     * Description
-     * @param int $chat_id 
-     * @param int $user_id 
-     * @param text $content 
+     * Description.
+     *
+     * @param int  $chat_id
+     * @param int  $user_id
+     * @param text $content
+     *
      * @return array
      */
     public function add_chat_message($chat_id, $user_id, $content)
     {
-        $query = "INSERT INTO chats_messages (chat_id, user_id, content) VALUES (?, ?, ?)";
+        $query = 'INSERT INTO chats_messages (chat_id, user_id, content) VALUES (?, ?, ?)';
 
-        return $this->db->query($query, array($chat_id, $user_id, $content));
+        return $this->db->query($query, [$chat_id, $user_id, $content]);
     }
 
     public function get_chats_messages($chat_id, $last_chat_message_id = 0)
@@ -82,6 +84,7 @@ class Chat_model extends CI_Model
         $this->db->select('chats.*, users.username');
         $this->db->from('chats as chats, users as users');
         $this->db->where('chats.user_id = users.id');
+
         return $this->db->get();
     }
 
@@ -89,5 +92,4 @@ class Chat_model extends CI_Model
     {
         return $this->db->get_where('chats', ['topic' => $topic]);
     }
-
 }

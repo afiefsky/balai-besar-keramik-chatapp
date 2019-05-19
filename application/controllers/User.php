@@ -38,21 +38,20 @@ class User extends CI_Controller
         $id = $this->uri->segment(3);
 
         if (isset($_POST['submit'])) {
-            $config['upload_path']          = './uploads/avatars/';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['max_size']             = 1000000;
+            $config['upload_path'] = './uploads/avatars/';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = 1000000;
 
             /* Identify the config as load the library */
             $this->load->library('upload', $config);
 
-            if (! $this->upload->do_upload('userfile'))
-            {
-                $error = array('error' => $this->upload->display_errors());
+            if (!$this->upload->do_upload('userfile')) {
+                $error = ['error' => $this->upload->display_errors()];
 
                 echo $error['error'];
                 die();
             } else {
-                $image = array('upload_data' => $this->upload->data());
+                $image = ['upload_data' => $this->upload->data()];
 
                 $data['avatar'] = $image['upload_data']['file_name'];
             }

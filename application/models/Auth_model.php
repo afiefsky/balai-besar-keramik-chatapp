@@ -3,10 +3,12 @@
 class Auth_model extends CI_Model
 {
     /**
-     * Verify Method Description
+     * Verify Method Description.
+     *
      * @param text $username
      * @param text $password
-     * @return boolean
+     *
+     * @return bool
      */
     public function verify($username, $password)
     {
@@ -18,11 +20,12 @@ class Auth_model extends CI_Model
         if ($user->num_rows() > 0) {
             if ($user_array['is_activated'] == '1') {
                 $this->session->set_userdata([
-                    'user_id' => $data['id'],
+                    'user_id'    => $data['id'],
                     'first_name' => $data['first_name'],
-                    'avatar' => $data['avatar'],
-                    'role' => $data['role']
+                    'avatar'     => $data['avatar'],
+                    'role'       => $data['role'],
                 ]);
+
                 return 1;
             } else {
                 $this->session->set_userdata('error', 'Silahkan minta admin untuk memberikan verifikasi terhadap akun anda!!');

@@ -11,6 +11,7 @@ class Dashboard_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('chats');
+
         return $this->db->get();
     }
 
@@ -33,5 +34,4 @@ class Dashboard_model extends CI_Model
     //                 uc.user_id = us.id";
     //     return $this->db->query($query);
     // }
-
 }
