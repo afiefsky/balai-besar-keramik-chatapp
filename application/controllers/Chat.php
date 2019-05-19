@@ -30,10 +30,17 @@ class Chat extends CI_Controller
 
         // $this->segment->select($first_segment, $second_segment);
 
+        $id = $this->uri->segment(3);
+        /* If the chat_id on the uri segment 3 is blank */
+        if (empty($chat_id = $this->uri->segment(3))) {
+            $chat_id = $this->uri->segment(2);
+            if ($chat_id === 'index') redirect('dashboard');
+        }
+
         if (isset($_POST['submit'])) {
             // chmod(base_url() . 'uploads/', 0777);
 
-            $id = $this->uri->segment(3);
+
             $config['upload_path'] = './uploads/';
             $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc|sql|xlsx|xls|ppt|pptx';
 
@@ -61,7 +68,7 @@ class Chat extends CI_Controller
                     $is_doc = '0';
                 }
 
-                $chat_id = $this->uri->segment(3);
+                // $chat_id = $this->uri->segment(3);
                 $user_id = $this->session->userdata('user_id');
                 $content = $data['upload_data']['file_name'];
 
@@ -78,11 +85,6 @@ class Chat extends CI_Controller
                 redirect('chat/index/'.$chat_id);
             }
         } elseif (isset($_POST['submit_video'])) {
-            /* If the chat_id on the uri segment 3 is blank */
-            if (empty($chat_id = $this->uri->segment(3))) {
-                $chat_id = $this->uri->segment(2);
-            }
-
             /* Activate video call */
             $this->view_data['video'] = 1;
             $this->view_data['audio'] = $this->session->userdata('audio');
@@ -90,11 +92,6 @@ class Chat extends CI_Controller
 
             $this->chat_component($chat_id);
         } elseif (isset($_POST['submit_audio'])) {
-            /* If the chat_id on the uri segment 3 is blank */
-            if (empty($chat_id = $this->uri->segment(3))) {
-                $chat_id = $this->uri->segment(2);
-            }
-
             /* Activate video call */
             $this->view_data['video'] = $this->session->userdata('video');
             $this->view_data['audio'] = 1;
@@ -102,11 +99,6 @@ class Chat extends CI_Controller
 
             $this->chat_component($chat_id);
         } elseif (isset($_POST['submit_close_audio'])) {
-            /* If the chat_id on the uri segment 3 is blank */
-            if (empty($chat_id = $this->uri->segment(3))) {
-                $chat_id = $this->uri->segment(2);
-            }
-
             /* Activate video call */
             $this->session->unset_userdata('audio');
             $this->view_data['video'] = $this->session->userdata('video');
@@ -114,11 +106,6 @@ class Chat extends CI_Controller
 
             $this->chat_component($chat_id);
         } elseif (isset($_POST['submit_close_video'])) {
-            /* If the chat_id on the uri segment 3 is blank */
-            if (empty($chat_id = $this->uri->segment(3))) {
-                $chat_id = $this->uri->segment(2);
-            }
-
             /* Activate video call */
             $this->session->unset_userdata('video');
             $this->view_data['video'] = 0;
@@ -126,11 +113,6 @@ class Chat extends CI_Controller
 
             $this->chat_component($chat_id);
         } else {
-            /* If the chat_id on the uri segment 3 is blank */
-            if (empty($chat_id = $this->uri->segment(3))) {
-                $chat_id = $this->uri->segment(2);
-            }
-
             $this->view_data['audio'] = $this->session->userdata('audio');
             $this->view_data['video'] = $this->session->userdata('video');
 
