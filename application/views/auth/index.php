@@ -17,10 +17,11 @@
     <input type="text" name="username" placeholder="Username" required="required" autofocus/>
     <input type="password" name="password" placeholder="Password" required="required" autocomplete="off" />
     <button type="submit" name="submit" class="btn btn-primary btn-block btn-large">Login</button>
+
+    <p align="right" style="color: white;">
+      Atau register di <?php echo anchor('auth/register', 'sini', ['style' => 'color: cyan;']) ?>
+    </p>
   </form>
-  <p>
-    <?php echo anchor('auth/register', 'Baru? Buat akun di sini.', ['style' => 'color: aqua;']); ?>
-  </p>
 </div>
 <?php
     echo form_close();

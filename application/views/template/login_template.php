@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login Form</title>
+    <title>Balai Keramik</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url(); ?>assets/icons/logo-white.png" />
 
     <style>
         /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
@@ -142,7 +143,7 @@
 
         .login {
             position: absolute;
-            top: 30%;
+            top: 40%;
             left: 50%;
             margin: -150px 0 0 -150px;
             width: 300px;

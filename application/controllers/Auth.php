@@ -18,6 +18,7 @@ class Auth extends CI_Controller
         parent::__construct();
 
         $this->load->model(['Auth_model', 'User_model']);
+        $this->load->helper('session_helper');
 
         $this->auth = $this->Auth_model;
         $this->user = $this->User_model;
@@ -40,7 +41,10 @@ class Auth extends CI_Controller
 
     public function login()
     {
-        if (isset($_POST['submit'])) {
+        checkLoginSession();
+
+        if (isset($_POST['submit']))
+        {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
 
@@ -74,9 +78,12 @@ class Auth extends CI_Controller
             $this->template->load('template/login_template', 'auth/index', $data);
         } // End if isset $_POST Submit.
     }
-
+    
+    /* USER REGISTRATION FORM PAGE */
     public function register()
     {
+        checkLoginSession();
+        
         if (isset($_POST['submit'])) {
             $data['first_name'] = $this->input->post('first_name');
             $data['last_name'] = $this->input->post('last_name');
@@ -89,7 +96,8 @@ class Auth extends CI_Controller
             $this->db->insert('users', $data);
 
             redirect('auth');
-        } else {
+        }
+        else {
             $this->template->load('template/login_template', 'register/index');
         } // End if isset $_POST submit.
     }
@@ -103,4 +111,5 @@ class Auth extends CI_Controller
 
         redirect('auth/index');
     }
+
 }

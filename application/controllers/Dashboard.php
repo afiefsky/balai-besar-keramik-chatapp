@@ -7,20 +7,24 @@ class Dashboard extends CI_Controller
         parent::__construct();
 
         $this->load->model(['Dashboard_model', 'Chat_model', 'User_model']);
+        $this->load->helper('session_helper');
+
         $this->dashboard = $this->Dashboard_model;
         $this->chat = $this->Chat_model;
         $this->user = $this->User_model;
-
         checkSession();
     }
 
     public function index()
     {
+        // NON ADMIN
         if ($this->session->userdata('role') == 1) {
             $data['record'] = $this->user->get($this->session->userdata('user_id'));
 
             $this->template->load('template/new_template', 'dashboard/index', $data);
-        } else {
+        }
+        // ADMIN
+        else {
             $data['record'] = $this->db->get('users');
             $this->template->load('template/dashboard_template', 'dashboard/admin/index', $data);
         }
