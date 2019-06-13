@@ -43,8 +43,7 @@ class Auth extends CI_Controller
     {
         checkLoginSession();
 
-        if (isset($_POST['submit']))
-        {
+        if (isset($_POST['submit'])) {
             $username = $this->input->post('username');
             $password = $this->input->post('password');
 
@@ -78,12 +77,12 @@ class Auth extends CI_Controller
             $this->template->load('template/login_template', 'auth/index', $data);
         } // End if isset $_POST Submit.
     }
-    
+
     /* USER REGISTRATION FORM PAGE */
     public function register()
     {
         checkLoginSession();
-        
+
         if (isset($_POST['submit'])) {
             $data['first_name'] = $this->input->post('first_name');
             $data['last_name'] = $this->input->post('last_name');
@@ -96,8 +95,7 @@ class Auth extends CI_Controller
             $this->db->insert('users', $data);
 
             redirect('auth');
-        }
-        else {
+        } else {
             $this->template->load('template/login_template', 'register/index');
         } // End if isset $_POST submit.
     }
@@ -111,5 +109,4 @@ class Auth extends CI_Controller
 
         redirect('auth/index');
     }
-
 }
