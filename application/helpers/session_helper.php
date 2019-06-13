@@ -15,9 +15,8 @@ function checkLoginSession()
     $session = $CI->session->userdata('login_status');
     if ($session === '') {
         redirect('auth');
-    }
-    else if ($session === 'ok') {
+    } elseif ($session === 'ok') {
         redirect('dashboard');
+    } else {/* Do nothing. */
     }
-    else {/* Do nothing. */}
 }
