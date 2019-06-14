@@ -32,7 +32,7 @@ class User extends CI_Controller
         }
     }
 
-    /* User profile settings */
+    /* USER PROFILE SETTING PAGE */
     public function setting()
     {
         $id = $this->uri->segment(3);

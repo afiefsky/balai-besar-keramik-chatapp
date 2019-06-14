@@ -75,12 +75,80 @@
                     <li class="active">
                         <?php echo anchor('dashboard', '<i class="menu-icon fa fa-laptop"></i>Dashboard'); ?>
                     </li>
+                    <!-- <li class="menu-title">UI elements</li> -->
+                    <!-- <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa ti-user"></i>Components</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-puzzle-piece"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-buttons.html">Buttons</a></li>
+                            <li><i class="fa fa-id-badge"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-badges.html">Badges</a></li>
+                            <li><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-tabs.html">Tabs</a></li>
+
+                            <li><i class="fa fa-id-card-o"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-cards.html">Cards</a></li>
+                            <li><i class="fa fa-exclamation-triangle"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-alerts.html">Alerts</a></li>
+                            <li><i class="fa fa-spinner"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-progressbar.html">Progress Bars</a></li>
+                            <li><i class="fa fa-fire"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-modals.html">Modals</a></li>
+                            <li><i class="fa fa-book"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-switches.html">Switches</a></li>
+                            <li><i class="fa fa-th"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-grids.html">Grids</a></li>
+                            <li><i class="fa fa-file-word-o"></i><a href="<?php echo base_url(); ?>assets/ela-admin/ui-typgraphy.html">Typography</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="<?php echo base_url(); ?>assets/ela-admin/tables-basic.html">Basic Table</a></li>
+                            <li><i class="fa fa-table"></i><a href="<?php echo base_url(); ?>assets/ela-admin/tables-data.html">Data Table</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-th"></i><a href="<?php echo base_url(); ?>assets/ela-admin/forms-basic.html">Basic Form</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="<?php echo base_url(); ?>assets/ela-admin/forms-advanced.html">Advanced Form</a></li>
+                        </ul>
+                    </li> -->
+
+                    <!-- <li class="menu-title">Icons</li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="<?php echo base_url(); ?>assets/ela-admin/font-fontawesome.html">Font Awesome</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="<?php echo base_url(); ?>assets/ela-admin/font-themify.html">Themefy Icons</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="<?php echo base_url(); ?>assets/ela-admin/widgets.html"> <i class="menu-icon ti-email"></i>Widgets </a>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-line-chart"></i><a href="<?php echo base_url(); ?>assets/ela-admin/charts-chartjs.html">Chart JS</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="<?php echo base_url(); ?>assets/ela-admin/charts-flot.html">Flot Chart</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="<?php echo base_url(); ?>assets/ela-admin/charts-peity.html">Peity Chart</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-map-o"></i><a href="<?php echo base_url(); ?>assets/ela-admin/maps-gmap.html">Google Maps</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="<?php echo base_url(); ?>assets/ela-admin/maps-vector.html">Vector Maps</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-title">Extras</li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Pages</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="<?php echo base_url(); ?>assets/ela-admin/page-login.html">Login</a></li>
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="<?php echo base_url(); ?>assets/ela-admin/page-register.html">Register</a></li>
+                            <li><i class="menu-icon fa fa-paper-plane"></i><a href="<?php echo base_url(); ?>assets/ela-admin/pages-forget.html">Forget Pass</a></li>
+                        </ul>
+                    </li> -->
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside>
     <!-- /#left-panel -->
-
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
         <!-- Header-->
@@ -238,6 +306,9 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script> -->
+    <!-- <script src="<?php echo base_url(); ?>assets/ela-admin/assets/js/init/weather-init.js"></script> -->
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
