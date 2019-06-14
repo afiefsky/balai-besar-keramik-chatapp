@@ -86,8 +86,13 @@ class Auth extends CI_Controller
         if (isset($_POST['submit'])) {
             $data['first_name'] = $this->input->post('first_name');
             $data['last_name'] = $this->input->post('last_name');
-            $data['division'] = $this->input->post('division');
             $data['email'] = $this->input->post('email');
+
+            if ($data['email'] !== $this->input->post('email_confirm')) {
+                $this->session->set_flashdata('message', 'Email dan Konfirmasi Email harus sama!');
+                redirect('auth/register');
+            }
+
             $data['username'] = $this->input->post('username');
             $data['password'] = $this->input->post('password');
             $data['avatar'] = 'default.jpeg';

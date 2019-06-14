@@ -1,3 +1,11 @@
+<h2 align="center" style="background: red; color: white;">
+<?php
+  $message = $this->session->flashdata('message');
+
+  if (!!$message) {
+    echo $message;
+  }
+?></h2>
 <div align="center" style="color: white;">
   <h2>Form Registrasi</h2>
   <table class="table table-bordered">
