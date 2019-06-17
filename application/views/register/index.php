@@ -2,8 +2,8 @@
 <?php
   $message = $this->session->flashdata('message');
 
-  if (!!$message) {
-    echo $message;
+  if ((bool) $message) {
+      echo $message;
   }
 ?></h2>
 <div align="center" style="color: white;">
