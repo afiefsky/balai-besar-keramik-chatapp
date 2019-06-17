@@ -84,20 +84,26 @@ class Auth extends CI_Controller
         checkLoginSession();
 
         if (isset($_POST['submit'])) {
-            $data['first_name'] = $this->input->post('first_name');
-            $data['last_name'] = $this->input->post('last_name');
-            $data['email'] = $this->input->post('email');
+            $data['first_name']     = $this->input->post('first_name');
+            $data['last_name']      = $this->input->post('last_name');
+            $data['email']          = $this->input->post('email');
+            $data['email_confirm']  = $this->input->post('email_confirm');
 
-            if ($data['email'] !== $this->input->post('email_confirm')) {
+            if ($data['email'] !== $data['email_confirm']) {
                 $this->session->set_flashdata('message', 'Email dan Konfirmasi Email harus sama!');
                 redirect('auth/register');
             }
 
-            $data['username'] = $this->input->post('username');
-            $data['password'] = $this->input->post('password');
-            $data['avatar'] = 'default.jpeg';
+            $data['password']           = $this->input->post('password');
+            $data['password_confirm']   = $this->input->post('password_confirm');
+            /**
+             * This means inserting default.jpeg record into database,
+             * [+++] which later on the app will read from root assets to load default avatar.
+             * [+++] in case user want to change avatar, it's from edit profile settings on the dashboard.
+             */
+            $data['avatar']             = 'default.jpeg';
 
-            $this->db->insert('users', $data);
+            $this->user->createUser($data);
 
             redirect('auth');
         } else {

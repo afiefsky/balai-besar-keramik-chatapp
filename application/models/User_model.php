@@ -7,6 +7,18 @@ class User_model extends CI_Model
         parent::__construct();
     }
 
+    public function createUser($data)
+    {
+        $user = $this->db->insert('users', $data);
+
+        if ($user) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public function get($user_id)
     {
         $this->db->select();
