@@ -19,6 +19,15 @@ class User_model extends CI_Model
         }
     }
 
+    public function getUserByEmail($email)
+    {
+        $this->db->select();
+        $this->db->from('users as users');
+        $this->db->like('email', $email);
+
+        print_r($this->db->get()->first_row());
+    }
+
     public function get($user_id)
     {
         $this->db->select();

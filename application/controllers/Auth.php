@@ -93,6 +93,9 @@ class Auth extends CI_Controller
                 $this->session->set_flashdata('message', 'Email dan Konfirmasi Email harus sama!');
                 redirect('auth/register');
             }
+            
+            $this->user->getUserByEmail($data['email']);
+            die();
 
             $data['password']           = $this->input->post('password');
             $data['password_confirm']   = $this->input->post('password_confirm');
@@ -101,11 +104,16 @@ class Auth extends CI_Controller
              * [+++] which later on the app will read from root assets to load default avatar.
              * [+++] in case user want to change avatar, it's from edit profile settings on the dashboard.
              */
-            $data['avatar']             = 'default.jpeg';
+            $data['avatar'] = 'default.jpeg';
 
-            $this->user->createUser($data);
+            $user = $this->user->createUser($data);
 
-            redirect('auth');
+            if ($user === true) {
+                redirect('auth');
+            }
+            else {
+                print_r('Error!');
+            }
         } else {
             $this->template->load('template/login_template', 'register/index');
         } // End if isset $_POST submit.
