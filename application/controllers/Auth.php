@@ -78,41 +78,70 @@ class Auth extends CI_Controller
         } // End if isset $_POST Submit.
     }
 
+    public function __setFlashData($data)
+    {
+        $this->session->set_flashdata([
+            'first_name'    => $data['first_name'],
+            'last_name'     => $data['last_name'],
+            'email'         => $data['email'],
+            'email_confirm' => $data['email_confirm']
+        ]);
+
+        return true;
+    }
+
     /* USER REGISTRATION FORM PAGE */
     public function register()
     {
         checkLoginSession();
 
         if (isset($_POST['submit'])) {
-            $data['first_name']     = $this->input->post('first_name');
-            $data['last_name']      = $this->input->post('last_name');
-            $data['email']          = $this->input->post('email');
-            $data['email_confirm']  = $this->input->post('email_confirm');
-
-            if ($data['email'] !== $data['email_confirm']) {
-                $this->session->set_flashdata('message', 'Email dan Konfirmasi Email harus sama!');
-                redirect('auth/register');
-            }
-            
-            $this->user->getUserByEmail($data['email']);
-            die();
-
-            $data['password']           = $this->input->post('password');
-            $data['password_confirm']   = $this->input->post('password_confirm');
             /**
-             * This means inserting default.jpeg record into database,
+             * POSTED RECORDS
+             * For $data['avatar'], that means inserting default.jpeg record into database,
              * [+++] which later on the app will read from root assets to load default avatar.
              * [+++] in case user want to change avatar, it's from edit profile settings on the dashboard.
              */
-            $data['avatar'] = 'default.jpeg';
+            $data['first_name']         = $this->input->post('first_name');
+            $data['last_name']          = $this->input->post('last_name');
+            $data['email']              = $this->input->post('email');
+            $data['email_confirm']      = $this->input->post('email_confirm');
+            $data['password']           = $this->input->post('password');
+            $data['password_confirm']   = $this->input->post('password_confirm');
+            $data['avatar']             = 'default.jpeg';
 
+            // Email validation step 1
+            if ($data['email'] !== $data['email_confirm']) {
+                $this->__setFlashData($data);
+                $this->session->set_flashdata('message', 'Email dan Konfirmasi Email harus sama!');
+                redirect('auth/register');
+            }
+
+            // Email validation step 2
+            $user = $this->user->getUserByEmail($data['email']);
+            if ($user === true) {
+                $this->__setFlashData($data);
+                $this->session->set_flashdata('message', 'Email sudah terdaftar dan tidak dapat digunakan!');
+                redirect('auth/register');
+            }
+
+            // Password validation
+            if ($data['password'] !== $data['password_confirm']) {
+                $this->__setFlashData($data);
+                $this->session->set_flashdata('message', 'Pastikan password dan konfirmasi_password sama!');
+                redirect('auth/register');
+            }
+
+            // Insert to db
             $user = $this->user->createUser($data);
 
+            // Conditioning
             if ($user === true) {
-                redirect('auth');
+                $this->session->set_flashdata('message', 'Akun dengan email ' . $data['email'] . ' telah berhasil dibuat!');
+                redirect('auth/login');
             }
             else {
-                print_r('Error!');
+                print_r($user);
             }
         } else {
             $this->template->load('template/login_template', 'register/index');

@@ -9,13 +9,20 @@ class User_model extends CI_Model
 
     public function createUser($data)
     {
+        $data = [
+            'first_name'    => $data['first_name'],
+            'last_name'     => $data['last_name'],
+            'password'      => $data['password'],
+            'avatar'        => $data['avatar']
+        ];
+
         $user = $this->db->insert('users', $data);
 
         if ($user) {
             return true;
         }
         else {
-            return false;
+            return $user;
         }
     }
 
@@ -25,7 +32,14 @@ class User_model extends CI_Model
         $this->db->from('users as users');
         $this->db->like('email', $email);
 
-        print_r($this->db->get()->first_row());
+        $user = $this->db->get()->num_rows();
+
+        if ($user > 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     public function get($user_id)

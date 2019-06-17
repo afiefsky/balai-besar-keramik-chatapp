@@ -1,3 +1,12 @@
+<h2 align="center" style="background: green; color: white;">
+<?php
+  $message = $this->session->flashdata('message');
+
+  if ((bool) $message) {
+    echo $message;
+  }
+?>
+</h2>
 <?php
     echo form_open('auth/login', ['class' => 'form-signin']);
 ?>
