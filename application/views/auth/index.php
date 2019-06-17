@@ -23,8 +23,8 @@
     ?>
   </h4>
   <form method="post">
-    <input type="text" name="username" placeholder="Username" required="required" autofocus/>
-    <input type="password" name="password" placeholder="Password" required="required" autocomplete="off" />
+    <input type="text" name="email" placeholder="nama@email.com" required="required" autofocus/>
+    <input type="password" name="password" placeholder="**********" required="required" autocomplete="off" />
     <button type="submit" name="submit" class="btn btn-primary btn-block btn-large">Login</button>
 
     <p align="right" style="color: white;">

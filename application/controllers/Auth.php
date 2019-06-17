@@ -44,13 +44,13 @@ class Auth extends CI_Controller
         checkLoginSession();
 
         if (isset($_POST['submit'])) {
-            $username = $this->input->post('username');
+            $email = $this->input->post('email');
             $password = $this->input->post('password');
 
             /**
              *  Verify process and storing user_id to session.
              */
-            $verify = $this->auth->verify($username, $password);
+            $verify = $this->auth->verify($email, $password);
 
             if ($verify == 1) {
                 /* Set session of status login if success */
@@ -66,7 +66,7 @@ class Auth extends CI_Controller
             } else {
                 /* Destory session if failed */
                 // $this->session->sess_destroy();
-                $this->session->set_userdata(['error' => 'Error!! Username dan password tidak valid!!']);
+                $this->session->set_userdata(['error' => 'Error!! Email dan password tidak valid!!']);
                 redirect('auth/login');
             } // End if $verify == 1.
         } elseif (isset($_POST['submit_register'])) {

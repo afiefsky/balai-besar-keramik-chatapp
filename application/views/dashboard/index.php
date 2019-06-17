@@ -5,7 +5,7 @@
   <thead>
     <tr>
       <th>No</th>
-      <th>Username</th>
+      <th>Nama</th>
       <th>Status</th>
       <th>Aksi</th>
     </tr>
@@ -25,7 +25,7 @@
 
         echo "<tr>
           <td>$no</td>
-          <td>$r->username</td>
+          <td>$r->first_name $r->last_name</td>
           <td>$logged_status</td>
           <td>".anchor('chat/redirect/'.$this->session->userdata('user_id').'/'.$r->id, 'Chat', ['class' => 'btn btn-primary btn-sm']).'</td>
         </tr>';

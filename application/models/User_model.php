@@ -12,6 +12,7 @@ class User_model extends CI_Model
         $data = [
             'first_name'    => $data['first_name'],
             'last_name'     => $data['last_name'],
+            'email'         => $data['email'],
             'password'      => $data['password'],
             'avatar'        => $data['avatar']
         ];

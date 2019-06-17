@@ -2,17 +2,9 @@
 
 class Auth_model extends CI_Model
 {
-    /**
-     * Verify Method Description.
-     *
-     * @param text $username
-     * @param text $password
-     *
-     * @return bool
-     */
-    public function verify($username, $password)
+    public function verify($email, $password)
     {
-        $user = $this->db->get_where('users', ['username' => $username, 'password' => $password]);
+        $user = $this->db->get_where('users', ['email' => $email, 'password' => $password]);
 
         $data = $user->row_array();
         $user_array = $user->row_array();
@@ -24,6 +16,7 @@ class Auth_model extends CI_Model
                     'first_name' => $data['first_name'],
                     'avatar'     => $data['avatar'],
                     'role'       => $data['role'],
+                    'email'      => $data['email'],
                 ]);
 
                 return 1;
