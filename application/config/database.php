@@ -76,11 +76,11 @@ $query_builder = true;
 
 $db['default'] = [
     'dsn'	         => '',
-    'hostname'     => 'localhost',
-    'username'     => 'root',
-    'password'     => 'nothing',
-    'database'     => 'balai-keramik',
-    'dbdriver'     => 'mysqli',
+    'hostname'     => getenv('DB_HOST'),
+    'username'     => getenv('DB_USERNAME'),
+    'password'     => getenv('DB_PASSWORD'),
+    'database'     => getenv('DB_DATABASE'),
+    'dbdriver'     => getenv('DB_CONNECTION'),
     'dbprefix'     => '',
     'pconnect'     => false,
     'db_debug'     => (ENVIRONMENT !== 'production'),
