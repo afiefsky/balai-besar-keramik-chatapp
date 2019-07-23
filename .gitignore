@@ -30,3 +30,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 .editorconfig
 .phpintel/
 user_guide/
+.env.development
