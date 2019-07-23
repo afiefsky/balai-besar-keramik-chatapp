@@ -40,7 +40,9 @@
       <td style="color: white; float: right;">Atau login menggunakan google </td>
     </tr>
     <tr>
-      <td style="float: right;"><div class="g-signin2" data-onsuccess="onSignIn"></div></td>
+      <td style="float: right;">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      </td>
     </tr>
   </table>
 </div>
