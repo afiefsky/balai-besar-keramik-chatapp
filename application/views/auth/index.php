@@ -31,7 +31,16 @@
       Atau register di <?php echo anchor('auth/register', 'sini', ['style' => 'color: cyan;']) ?>
     </p>
   </form>
-</div>
+
 <?php
     echo form_close();
 ?>
+  <table style="width: 100%">
+    <tr>
+      <td style="color: white; float: right;">Atau login menggunakan google </td>
+    </tr>
+    <tr>
+      <td style="float: right;"><div class="g-signin2" data-onsuccess="onSignIn"></div></td>
+    </tr>
+  </table>
+</div>
