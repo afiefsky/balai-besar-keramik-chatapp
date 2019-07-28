@@ -24,6 +24,26 @@ class Auth extends CI_Controller
         $this->user = $this->User_model;
     }
 
+    public function getUser()
+    {
+        $requestData = json_decode(file_get_contents('php://input'), true);
+
+        $email = $requestData['email'];
+
+        $getUser = $this->user->getUserFromApi($email); // true or false
+
+        $this->session->set_userdata([
+            'user_id'    => $getUser['user_id'],
+            'first_name' => $getUser['first_name'],
+            'avatar'     => $getUser['avatar'],
+            'role'       => $getUser['role'],
+            'email'      => $getUser['email']
+        ]);
+
+        header('Content-Type: application/json');
+        echo json_encode($getUser);
+    }
+
     public function index()
     {
         redirect('auth/login');
@@ -60,18 +80,22 @@ class Auth extends CI_Controller
                 $this->user->logged($this->session->userdata('user_id'));
 
                 redirect('dashboard');
-            } elseif ($verify == 2) {
+            }
+            elseif ($verify == 2) {
                 $this->session->set_userdata('error', 'Silahkan minta admin untuk memberikan verifikasi terhadap akun anda!');
                 redirect('auth/login');
-            } else {
+            }
+            else {
                 /* Destory session if failed */
                 // $this->session->sess_destroy();
                 $this->session->set_userdata(['error' => 'Error!! Email dan password tidak valid!!']);
                 redirect('auth/login');
             } // End if $verify == 1.
-        } elseif (isset($_POST['submit_register'])) {
+        }
+        elseif (isset($_POST['submit_register'])) {
             redirect('auth/register');
-        } else {
+        }
+        else {
             $data['error'] = $this->session->userdata('error');
 
             $this->template->load('template/login_template', 'auth/index', $data);

@@ -4,9 +4,9 @@ $(document).ready(function() {
 
         var formData = {
             'id': 1
-        };
+        }
 
-        // console.log(formData['id']);
+        // console.log(formData['id'])
 
         $.ajax({
             type: 'POST',
@@ -15,16 +15,16 @@ $(document).ready(function() {
             async: false,
             beforeSend: function (xhr) {
                 if (xhr && xhr.overrideMimeType) {
-                    xhr.overrideMimeType('application/json;charset=utf-8');
+                    xhr.overrideMimeType('application/json;charset=utf-8')
                 }
             },
             dataType: 'json',
             success: function (data) {
-            //Do stuff with the JSON data
+                // Do stuff with the JSON data
             }
-        });
+        })
     }
 
-    getData();
+    getData()
 
-});
+})

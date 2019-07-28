@@ -33,10 +33,48 @@ class User_model extends CI_Model
         $this->db->from('users as users');
         $this->db->like('email', $email);
 
-        $user = $this->db->get()->num_rows();
+        $user = $this->db->get();
+        $user_rows = $user->num_rows();
 
-        if ($user > 0) {
+        if ($user_rows > 0) {
+            $data = $user->row_array();
+
+            $this->session->set_userdata([
+                'user_id'    => $data['id'],
+                'first_name' => $data['first_name'],
+                'avatar'     => $data['avatar'],
+                'role'       => $data['role'],
+                'email'      => $data['email'],
+            ]);
+
             return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function getUserFromApi($email)
+    {
+        $this->db->select();
+        $this->db->from('users as users');
+        $this->db->like('email', $email);
+
+        $user = $this->db->get();
+        $user_rows = $user->num_rows();
+
+        if ($user_rows > 0) {
+            $data = $user->row_array();
+
+            $data = [
+                'user_id'    => $data['id'],
+                'first_name' => $data['first_name'],
+                'avatar'     => $data['avatar'],
+                'role'       => $data['role'],
+                'email'      => $data['email'],
+            ];
+
+            return $data;
         }
         else {
             return false;

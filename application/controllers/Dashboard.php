@@ -12,7 +12,7 @@ class Dashboard extends CI_Controller
         $this->dashboard = $this->Dashboard_model;
         $this->chat = $this->Chat_model;
         $this->user = $this->User_model;
-        checkSession();
+        // checkSession();
     }
 
     public function index()
