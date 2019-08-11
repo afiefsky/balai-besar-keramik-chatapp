@@ -9,7 +9,7 @@
 |   login           |   Login form
 |   register        |   Register form
 |   logout          |   Destroy session
-*/
+*/ 
 
 class Auth extends CI_Controller
 {
@@ -22,6 +22,18 @@ class Auth extends CI_Controller
 
         $this->auth = $this->Auth_model;
         $this->user = $this->User_model;
+    }
+
+    public function __setFlashData($data)
+    {
+        $this->session->set_flashdata([
+            'first_name'    => $data['first_name'],
+            'last_name'     => $data['last_name'],
+            'email'         => $data['email'],
+            'email_confirm' => $data['email_confirm']
+        ]);
+
+        return true;
     }
 
     public function getUser()
@@ -50,14 +62,6 @@ class Auth extends CI_Controller
 
         return true;
     }
-
-    /**
-     * Disabled for now.
-     */
-    // public function welcome()
-    // {
-    //     $this->template->load('template/welcome_template', 'welcome/index');
-    // }
 
     public function login()
     {
@@ -102,16 +106,18 @@ class Auth extends CI_Controller
         } // End if isset $_POST Submit.
     }
 
-    public function __setFlashData($data)
+    public function validateHidden()
     {
-        $this->session->set_flashdata([
-            'first_name'    => $data['first_name'],
-            'last_name'     => $data['last_name'],
-            'email'         => $data['email'],
-            'email_confirm' => $data['email_confirm']
-        ]);
+        $email = $this->input->post('hidden_mail');
+        $result = $this->user->getUserByEmail($email);
 
-        return true;
+        if ($result === true) {
+            redirect('dashboard');
+        }
+        else {
+            $this->session->set_flashdata('message', 'Email yang anda gunakan belum terdaftar, silahkan register.');
+            redirect('auth/register');
+        }
     }
 
     /* USER REGISTRATION FORM PAGE */
@@ -181,4 +187,10 @@ class Auth extends CI_Controller
 
         redirect('auth/index');
     }
+
+    /* Disabled for now */
+    // public function welcome()
+    // {
+    //     $this->template->load('template/welcome_template', 'welcome/index');
+    // }
 }
