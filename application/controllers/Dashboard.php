@@ -25,8 +25,7 @@ class Dashboard extends CI_Controller
         }
         // ADMIN
         else {
-            $data['record'] = $this->db->get('users');
-            $this->template->load('template/dashboard_template', 'dashboard/admin/index', $data);
+            redirect('admin/index');
         }
     }
 }
