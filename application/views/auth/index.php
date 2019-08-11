@@ -51,6 +51,11 @@ echo form_open('auth/login', ['class' => 'form-signin']);
 echo form_close();
 ?>
 
+<?php echo form_open('auth/validateHidden', ['style' => 'visibility: hidden; position: fixed;']); ?>
+<input type="text" name="hidden_mail" id="hidden_mail" />
+<input type="submit" name="submit" id="submit" />
+<?php echo form_close(); ?>
+
 <!-- JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 <script>
@@ -67,18 +72,16 @@ echo form_close();
         let URL = BASE_URL + '/index.php/auth/getuser'
         axios.post(URL, user)
             .then(function (response) {
-                // handle success
                 console.log(response)
-
                 let result = response.data
-                if (result !== false) {
-                    localStorage.setItem('user', JSON.stringify(result))
+                let email = result.email
 
-                    location.replace(BASE_URL + '/index.php/dashboard')
-                }
-                else {
-                    console.log(false)
-                }
+                // Check whether the user is exists on the database, by putting the email to the empty hidden field
+                let hiddenmail = document.getElementById('hidden_mail')
+                hiddenmail.value = email
+
+                let submit = document.getElementById('submit')
+                submit.click()
             })
             .catch(function (error) {
                 // handle error
