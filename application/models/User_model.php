@@ -7,6 +7,11 @@ class User_model extends CI_Model
         parent::__construct();
     }
 
+    public function getAll()
+    {
+        return $this->db->get('users');
+    }
+
     public function createUser($data)
     {
         $data = [
