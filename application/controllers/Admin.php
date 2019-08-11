@@ -14,6 +14,6 @@ class Admin extends CI_Controller
     public function index()
     {
         $data['record'] = $this->user->getAll();
-        $this->template->load('template/dashboard_template', 'dashboard/admin/index', $data);
+        $this->template->load('template/admin_template.php', 'admin/index', $data);
     }
 }
