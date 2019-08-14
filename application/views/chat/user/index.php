@@ -28,7 +28,7 @@
         $no++;
         echo "<tr>
             <td>$no</td>
-            <td>$chat->id</td>
+            <td>$chat->topic</td>
             <td>" . anchor('chat/user/' . $chat->id, 'Check', ['class' => 'btn btn-primary btn-sm']) . "</td>
         </tr>";
     }

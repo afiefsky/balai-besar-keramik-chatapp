@@ -16,7 +16,12 @@ class Chat_model extends CI_Model
 
     public function getMessagesByUserId($user_id)
     {
-        return $this->db->get_where('chats_messages', ['user_id' => $user_id]);
+        $this->db->select('chat.*');
+        $this->db->from('chats as chat');
+        $this->db->join('chats_messages as message', 'message.chat_id = chat.id');
+        $this->db->group_by('chat.id');
+
+        return $this->db->get();
     }
 
     public function create($first_id, $second_id)
