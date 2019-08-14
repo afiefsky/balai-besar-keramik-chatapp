@@ -1,4 +1,4 @@
-<h2>Daftar User</h2>
+<h2>Daftar Chat User <?php echo $this->uri->segment(3) ?></h2>
 <h2 align="center" style="background: green; color: white;">
     <?php
     $message = $this->session->flashdata('message');
@@ -15,34 +15,21 @@
 <table class="table table-bordered">
     <tr>
         <th>No</th>
-        <th>Email</td>
-        <th>Nama Depan</td>
+        <th>Chat ID</td>
+        <th>User ID</td>
         <th>Nama Belakang</td>
         <th>Status Keaktifan</td>
         <th>Aksi</td>
     </tr>
     <?php
     $no = 0;
-    $aktif_status = '';
-    $button_activate = '';
-    foreach ($record->result() as $r) {
-        if ($r->email === 'admin@mail.com') continue;
 
-        if ($r->is_activated == 1) {
-            $aktif_status = 'Aktif';
-            $button_activate = '';
-        } else {
-            $aktif_status = 'Belum Aktif';
-            $button_activate = anchor('user/activate/'.$r->id, 'Aktifkan!', ['class' => 'btn btn-success btn-sm']);
-        }
+    foreach ($chats->result() as $chat) {
         $no++;
         echo "<tr>
             <td>$no</td>
-            <td>$r->email</td>
-            <td>$r->first_name</td>
-            <td>$r->last_name</td>
-            <td>$aktif_status</td>
-            <td>" . anchor('chat/user/' . $r->id, 'Check', ['class' => 'btn btn-primary btn-sm']) . "</td>
+            <td>$chat->id</td>
+            <td>" . anchor('chat/user/' . $chat->id, 'Check', ['class' => 'btn btn-primary btn-sm']) . "</td>
         </tr>";
     }
     ?>

@@ -14,6 +14,11 @@ class Chat_model extends CI_Model
         parent::__construct();
     }
 
+    public function getMessagesByUserId($user_id)
+    {
+        return $this->db->get_where('chats_messages', ['user_id' => $user_id]);
+    }
+
     public function create($first_id, $second_id)
     {
         $data['topic'] = $first_id.$second_id;

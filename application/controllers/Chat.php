@@ -14,6 +14,15 @@ class Chat extends CI_Controller
         $this->group = $this->Group_model;
     }
 
+    public function user()
+    {
+        $user_id = $this->uri->segment(3);
+        
+        $data['chats'] = $this->chat->getMessagesByUserId($user_id);
+        
+        return $this->template->load('template/admin_template', 'chat/user/index', $data);
+    }
+    
     /* Group Chats */
     public function group()
     {
