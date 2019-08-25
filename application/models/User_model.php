@@ -7,6 +7,11 @@ class User_model extends CI_Model
         parent::__construct();
     }
 
+    public function getUserData($id)
+    {
+        return $this->db->get_where('users', ['id' => $id]);
+    }
+
     public function getAll()
     {
         return $this->db->get('users');

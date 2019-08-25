@@ -1,4 +1,4 @@
-<h2>Daftar Chat User <?php echo $this->uri->segment(3) ?></h2>
+<h2>Daftar Lawan Bicara <?php echo $user['first_name'] . ' ' . $user['last_name']; ?></h2>
 <h2 align="center" style="background: green; color: white;">
     <?php
     $message = $this->session->flashdata('message');
@@ -8,28 +8,31 @@
     }
     ?>
 </h2>
-<?php echo anchor('user/create', 'Create User', ['class' => 'btn btn-primary']); ?>
+<?php echo anchor('admin/index', 'Kembali', ['class' => 'btn btn-info']); ?>
 
 <br /><br />
 
 <table class="table table-bordered">
     <tr>
         <th>No</th>
-        <th>Chat ID</td>
-        <th>User ID</td>
+        <th>Nama Depan</td>
         <th>Nama Belakang</td>
-        <th>Status Keaktifan</td>
         <th>Aksi</td>
     </tr>
     <?php
     $no = 0;
 
+    if ($chats->num_rows() === 0) {
+        echo "<tr><td colspan='4'>Tidak ada percakapan ditemukan</td></tr>";
+    }
+
     foreach ($chats->result() as $chat) {
         $no++;
         echo "<tr>
             <td>$no</td>
-            <td>$chat->topic</td>
-            <td>" . anchor('chat/user/' . $chat->id, 'Check', ['class' => 'btn btn-primary btn-sm']) . "</td>
+            <td>$chat->first_name</td>
+            <td>$chat->last_name</td>
+            <td>" . anchor('chat/delete/' . $chat->id, 'Hapus', ['class' => 'btn btn-danger btn-sm']) . "</td>
         </tr>";
     }
     ?>

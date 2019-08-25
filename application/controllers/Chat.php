@@ -17,10 +17,25 @@ class Chat extends CI_Controller
     public function user()
     {
         $user_id = $this->uri->segment(3);
-        
+        $this->session->set_userdata('user_id', $user_id);
+
         $data['chats'] = $this->chat->getMessagesByUserId($user_id);
-        
+        $data['user'] = $this->user->getUserData($user_id)->row_array();
+
         return $this->template->load('template/admin_template', 'chat/user/index', $data);
+    }
+    
+    public function delete()
+    {
+        $chat_id = $this->uri->segment(3);
+        $user_id = $this->session->flashdata('user_id');
+        $result = $this->chat->deleteChat($chat_id);
+
+        if ($result) {
+            $this->session->set_userdata('message', 'Chat history telah berhasil dihapus!');
+
+            redirect('chat/user/' . $user_id);
+        }
     }
     
     /* Group Chats */
@@ -147,7 +162,7 @@ class Chat extends CI_Controller
             $chat = $this->chat->create($first_id, $second_id);
 
             if ($chat == 1) {
-                $topic = $first_id.$second_id;
+                $topic = $first_id . '-' . $second_id;
 
                 $chat = $this->chat->obtain($topic)->row_array();
 

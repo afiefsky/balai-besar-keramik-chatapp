@@ -41,7 +41,7 @@ echo form_open('auth/login', ['class' => 'form-signin']);
         </tr>
         <tr>
             <td style="float: right;">
-                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div class="g-signin2" id="gsignin" onclick="clickSignIn(this)" data-onsuccess="signInViaGoogle"></div>
             </td>
         </tr>
     </table>
@@ -59,33 +59,41 @@ echo form_close();
 <!-- JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
 <script>
-    function onSignIn(googleUser) {
-        let profile = googleUser.getBasicProfile()
-        let user = {
-            id: profile.getId(),
-            name: profile.getName(),
-            image_url: profile.getImageUrl(),
-            email: profile.getEmail()
+    let clicked = false
+
+    const clickSignIn = (element) => {
+        clicked = true
+    }
+
+    function signInViaGoogle(googleUser) {
+        if (clicked) {
+            let profile = googleUser.getBasicProfile()
+            let user = {
+                id: profile.getId(),
+                name: profile.getName(),
+                image_url: profile.getImageUrl(),
+                email: profile.getEmail()
+            }
+
+            let BASE_URL = '<?php echo getenv('BASE_URL'); ?>'
+            let URL = BASE_URL + '/index.php/auth/getuser'
+            axios.post(URL, user)
+                .then(function (response) {
+                    console.log(response)
+                    let result = response.data
+                    let email = result.email
+
+                    // Check whether the user is exists on the database, by putting the email to the empty hidden field
+                    let hiddenmail = document.getElementById('hidden_mail')
+                    hiddenmail.value = email
+
+                    let submit = document.getElementById('submit')
+                    submit.click()
+                })
+                .catch(function (error) {
+                    // handle error
+                    console.log(error)
+                })
         }
-
-        let BASE_URL = '<?php echo getenv('BASE_URL'); ?>'
-        let URL = BASE_URL + '/index.php/auth/getuser'
-        axios.post(URL, user)
-            .then(function (response) {
-                console.log(response)
-                let result = response.data
-                let email = result.email
-
-                // Check whether the user is exists on the database, by putting the email to the empty hidden field
-                let hiddenmail = document.getElementById('hidden_mail')
-                hiddenmail.value = email
-
-                let submit = document.getElementById('submit')
-                submit.click()
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error)
-            })
     } // End onSignIn
 </script>

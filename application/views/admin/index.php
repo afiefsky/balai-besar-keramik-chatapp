@@ -8,7 +8,7 @@
     }
     ?>
 </h2>
-<?php echo anchor('user/create', 'Create User', ['class' => 'btn btn-primary']); ?>
+<?php echo anchor('user/create', 'Create User', ['class' => 'btn btn-info']); ?>
 
 <br /><br />
 
@@ -42,7 +42,7 @@
             <td>$r->first_name</td>
             <td>$r->last_name</td>
             <td>$aktif_status</td>
-            <td>" . anchor('chat/user/' . $r->id, 'Check', ['class' => 'btn btn-primary btn-sm']) . "</td>
+            <td>" . anchor('chat/user/' . $r->id, 'Check', ['class' => 'btn btn-success btn-sm']) . "</td>
         </tr>";
     }
     ?>

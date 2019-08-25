@@ -26,7 +26,13 @@
             <tr>
                 <td>Password</td>
                 <td>
-                    <input type="text" name="password" value="<?php echo $record['password']; ?>" class="form-control" required>
+                    <input type="password" name="password" value="<?php echo $record['password']; ?>" class="form-control" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Password (ulangi)</td>
+                <td>
+                    <input type="password" name="password" value="<?php echo $record['password']; ?>" class="form-control" required>
                 </td>
             </tr>
             <tr>

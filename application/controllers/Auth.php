@@ -19,7 +19,7 @@ class Auth extends CI_Controller
         parent::__construct();
 
         $this->load->model(['Auth_model', 'User_model']);
-        $this->load->helper('session_helper');
+        // $this->load->helper('session_helper');
 
         $this->auth = $this->Auth_model;
         $this->user = $this->User_model;
