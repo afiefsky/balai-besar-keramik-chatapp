@@ -151,6 +151,11 @@ class Chat extends CI_Controller
         $first_id = $this->uri->segment(3);
         $second_id = $this->uri->segment(4);
 
+        // Start FROM-TO
+        $this->session->set_userdata('chat_from', $first_id);
+        $this->session->set_userdata('chat_to', $second_id);
+        // End FROM-TO
+
         $this->session->set_userdata('target_id', $second_id);
 
         $result = $this->segment->locate($first_id, $second_id);
@@ -194,6 +199,8 @@ class Chat extends CI_Controller
         /* Send in chat_id and user_id */
         $this->view_data['chat_id'] = $chat_id;
         $this->view_data['user_id'] = $this->session->userdata('user_id');
+        $this->view_data['chat_from'] = $this->session->userdata('chat_from');
+        $this->view_data['chat_to'] = $this->session->userdata('chat_to');
 
         $this->session->set_userdata('last_chat_message_id_'.$this->view_data['chat_id'], 0);
 
@@ -216,9 +223,11 @@ class Chat extends CI_Controller
         /* Posting */
         $chat_id = $this->input->post('chat_id');
         $user_id = $this->input->post('user_id');
+        $chat_from = $this->input->post('chat_from');
+        $chat_to = $this->input->post('chat_to');
         $content = $this->input->post('content', true);
 
-        $this->chat->add_chat_message($chat_id, $user_id, $content);
+        $this->chat->add_chat_message($chat_id, $user_id, $content, $chat_from, $chat_to);
 
         /* Executing the method on model */
         echo $this->_get_chats_messages($chat_id);

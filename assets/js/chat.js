@@ -29,10 +29,9 @@ $(document).ready(function() {
 
         var userfile = $("input#userfile").val();
 
-        if (content == "") return false;
+        if (content === "") return false;
 
-        $.post(base_url + "index.php/chat/ajax_add_chat_message", { content: content, chat_id: chat_id, user_id: user_id }, function(data) {
-
+        $.post(base_url + "index.php/chat/ajax_add_chat_message", { content: content, chat_id: chat_id, user_id: user_id, chat_from: chat_from, chat_to: chat_to }, function(data) {
             /* Condition */
             if (data.status == 'ok') {
 
@@ -43,7 +42,8 @@ $(document).ready(function() {
                 /* Scroll each time you submit new message */
                 $('div#chat_viewport').scrollTop($('div#chat_viewport')[0].scrollHeight);
 
-            } else {
+            }
+            else {
                 /* Error here */
             }
 

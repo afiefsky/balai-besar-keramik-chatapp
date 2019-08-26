@@ -29,7 +29,8 @@ class Chat_model extends CI_Model
         $this->db->join('chats_messages as message', 'message.chat_id = chat.id');
         $this->db->join('users as user', 'user.id = message.user_id');
         $this->db->join('uri_segments as segment', 'segment.chat_id = chat.id');
-        
+        $this->db->group_by('message.chat_id');
+
         return $this->db->get();
     }
 
@@ -55,38 +56,32 @@ class Chat_model extends CI_Model
      *
      * @return array
      */
-    public function add_chat_message($chat_id, $user_id, $content)
+    public function add_chat_message($chat_id, $user_id, $content, $chat_from, $chat_to)
     {
-        $query = 'INSERT INTO chats_messages (chat_id, user_id, content) VALUES (?, ?, ?)';
+        $query = 'INSERT INTO chats_messages (chat_id, user_id, content, chat_from, chat_to) VALUES (?, ?, ?, ?, ?)';
 
-        return $this->db->query($query, [$chat_id, $user_id, $content]);
+        return $this->db->query($query, [$chat_id, $user_id, $content, $chat_from, $chat_to]);
     }
 
     public function get_chats_messages($chat_id, $last_chat_message_id = 0)
     {
         $query = "SELECT
-                    cm.id,
-                    cm.user_id,
-                    cm.content,
-                    DATE_FORMAT(cm.created_at, '%D of %M %Y at %H:%i:%s') AS timestamp,
-                    cm.is_image,
-                    cm.is_doc,
-                    u.username,
-                    u.first_name,
-                    u.last_name
-                FROM
-                    chats_messages AS cm
-                JOIN
-                    users AS u
-                ON
-                    cm.user_id = u.id
-                WHERE 
-                    cm.chat_id = ?
-                AND 
-                    cm.id > ?
-                ORDER BY
-                    cm.id
-                ASC";
+            cm.id,
+            cm.user_id,
+            cm.content,
+            DATE_FORMAT(cm.created_at, '%D of %M %Y at %H:%i:%s') AS timestamp,
+            cm.is_image,
+            cm.is_doc,
+            u.username,
+            u.first_name,
+            u.last_name
+        FROM
+            chats_messages AS cm
+        JOIN users AS u ON cm.user_id = u.id
+        WHERE cm.chat_id = ?
+        AND cm.id > ?
+        ORDER BY cm.id
+        ASC";
 
         $result = $this->db->query($query, [$chat_id, $last_chat_message_id]);
 

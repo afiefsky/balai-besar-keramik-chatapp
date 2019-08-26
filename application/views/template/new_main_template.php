@@ -9,6 +9,8 @@
     <script type="text/javascript">
       var chat_id = "<?php echo $chat_id; ?>";
       var user_id = "<?php echo $user_id; ?>";
+      var chat_from = "<?php echo $chat_from; ?>";
+      var chat_to = "<?php echo $chat_to; ?>";
     </script>
     
     <script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>chat.js"></script>
