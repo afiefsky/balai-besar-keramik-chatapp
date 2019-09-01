@@ -70,7 +70,7 @@ class Auth extends CI_Controller
 
         if (isset($_POST['submit'])) {
             $email = $this->input->post('email');
-            $password = $this->input->post('password');
+            $password = md5($this->input->post('password'));
 
             /**
              *  Verify process and storing user_id to session.
