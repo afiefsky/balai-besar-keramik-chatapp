@@ -3,6 +3,8 @@
     <?php
     $message = $this->session->flashdata('message');
 
+    $login_user_id = $this->session->userdata('user_id');
+
     if ((bool) $message) {
         echo $message;
     }
@@ -42,7 +44,10 @@
             <td>$r->first_name</td>
             <td>$r->last_name</td>
             <td>$aktif_status</td>
-            <td>" . anchor('chat/user/' . $r->id, 'Check', ['class' => 'btn btn-success btn-sm']) . "</td>
+            <td>".
+                anchor('chat/redirect/' . $login_user_id . '/' . $r->id, 'Chat', ['class' => 'btn btn-primary btn-sm']) . " " .
+                anchor('chat/user/' . $r->id, 'Check', ['class' => 'btn btn-info btn-sm'])
+            ."</td>
         </tr>";
     }
     ?>
