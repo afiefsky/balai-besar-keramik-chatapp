@@ -1,4 +1,4 @@
-<h1>Chatting App</h1>
+<h1>Layanan chat <?php echo $layanan_name; ?></h1>
 
 <table border="1">
   <tr>

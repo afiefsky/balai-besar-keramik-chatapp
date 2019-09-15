@@ -17,4 +17,17 @@ class Layanan_model extends CI_Model
 
         return $this->db->query($sql);
     }
+
+    function getLayananById($id)
+    {
+        $sql =
+            'SELECT
+                id, name, icon, created_date, updated_date
+            FROM
+                layanan
+            WHERE
+                id = ?';
+
+        return $this->db->query($sql, [$id]);
+    }
 }

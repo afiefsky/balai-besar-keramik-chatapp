@@ -7,11 +7,12 @@ class Chat extends CI_Controller
     {
         parent::__construct();
 
-        $this->load->model(['Chat_model', 'Segment_model', 'User_model', 'Group_model']);
+        $this->load->model(['Chat_model', 'Segment_model', 'User_model', 'Group_model', 'Layanan_model']);
         $this->chat = $this->Chat_model;
         $this->segment = $this->Segment_model;
         $this->user = $this->User_model;
         $this->group = $this->Group_model;
+        $this->layanan = $this->Layanan_model;
     }
 
     /* Chat Index */
@@ -247,9 +248,14 @@ class Chat extends CI_Controller
     public function layanan_redirect()
     {
         /* first_id and second_id is user id */
-        $first_id = $this->uri->segment(3);
-        $second_id = $this->uri->segment(4);
-        $third_id = $this->uri->segment(5);
+        $first_id = $this->uri->segment(3); // this is self_user_id
+        $second_id = $this->uri->segment(4); // this is target_user_id
+        $third_id = $this->uri->segment(5); // this is layanan
+
+        /* Set layanan_name start */
+        $layanan_data = $this->layanan->getLayananById($third_id)->row();
+        $this->session->set_userdata('layanan_name', $layanan_data->name);
+        /* Set layanan_name end */
 
         // Start FROM-TO
         $this->session->set_userdata('chat_from', $first_id);
@@ -338,6 +344,10 @@ class Chat extends CI_Controller
     /* Call this method within index method */
     public function chat_component($chat_id)
     {
+        /* Layanan session start */
+        $this->view_data['layanan_name'] = $this->session->userdata('layanan_name');
+        /* Layanan session end */
+
         /* Get the array of data of chat_id from model */
         $this->view_data['chat_data'] = $this->chat->getOne($chat_id)->row_array();
 
