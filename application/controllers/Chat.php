@@ -14,38 +14,6 @@ class Chat extends CI_Controller
         $this->group = $this->Group_model;
     }
 
-    public function user()
-    {
-        $user_id = $this->uri->segment(3);
-        $this->session->set_userdata('user_id', $user_id);
-
-        $data['chats'] = $this->chat->getMessagesByUserId($user_id);
-        $data['user'] = $this->user->getUserData($user_id)->row_array();
-
-        return $this->template->load('template/admin_template', 'chat/user/index', $data);
-    }
-    
-    public function delete()
-    {
-        $chat_id = $this->uri->segment(3);
-        $user_id = $this->session->flashdata('user_id');
-        $result = $this->chat->deleteChat($chat_id);
-
-        if ($result) {
-            $this->session->set_userdata('message', 'Chat history telah berhasil dihapus!');
-
-            redirect('chat/user/' . $user_id);
-        }
-    }
-    
-    /* Group Chats */
-    public function group()
-    {
-        /* Get all chatroom of group*/
-        $data['record'] = $this->group->all();
-        $this->template->load('template/dashboard_template', 'chat/group/index', $data);
-    }
-
     /* Chat Index */
     public function index()
     {
@@ -145,9 +113,186 @@ class Chat extends CI_Controller
         }
     }
 
+    public function user()
+    {
+        $user_id = $this->uri->segment(3);
+        $this->session->set_userdata('user_id', $user_id);
+
+        $data['chats'] = $this->chat->getMessagesByUserId($user_id);
+        $data['user'] = $this->user->getUserData($user_id)->row_array();
+
+        return $this->template->load('template/admin_template', 'chat/user/index', $data);
+    }
+    
+    public function delete()
+    {
+        $chat_id = $this->uri->segment(3);
+        $user_id = $this->session->flashdata('user_id');
+        $result = $this->chat->deleteChat($chat_id);
+
+        if ($result) {
+            $this->session->set_userdata('message', 'Chat history telah berhasil dihapus!');
+
+            redirect('chat/user/' . $user_id);
+        }
+    }
+    
+    /* Group Chats */
+    public function group()
+    {
+        /* Get all chatroom of group*/
+        $data['record'] = $this->group->all();
+        $this->template->load('template/dashboard_template', 'chat/group/index', $data);
+    }
+
+    public function index_backup()
+    {
+        // $first_segment = $this->uri->segment(3);
+        // $second_segment = $this->uri->segment(4);
+
+        // $this->segment->select($first_segment, $second_segment);
+
+        $id = $this->uri->segment(3);
+        /* If the chat_id on the uri segment 3 is blank */
+        if (empty($chat_id = $this->uri->segment(3))) {
+            $chat_id = $this->uri->segment(2);
+            if ($chat_id === 'index') {
+                redirect('dashboard');
+            }
+        }
+
+        if (isset($_POST['submit'])) {
+            // chmod(base_url() . 'uploads/', 0777);
+
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf|docx|doc|sql|xlsx|xls|ppt|pptx';
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('userfile')) {
+                die();
+                redirect('chat/index/'.$id);
+            } else {
+                $data = ['upload_data' => $this->upload->data()];
+
+                $file_ext = $data['upload_data']['file_ext'];
+
+                if ($file_ext == '.docx' ||
+                    $file_ext == '.doc' ||
+                    $file_ext == '.pdf' ||
+                    $file_ext == '.xls' ||
+                    $file_ext == '.xlsx' ||
+                    $file_ext == '.ppt' ||
+                    $file_ext == '.pptx') {
+                    $is_image = '0';
+                    $is_doc = '1';
+                } else {
+                    $is_image = '1';
+                    $is_doc = '0';
+                }
+
+                // $chat_id = $this->uri->segment(3);
+                $user_id = $this->session->userdata('user_id');
+                $content = $data['upload_data']['file_name'];
+
+                $data = [
+                    'chat_id'  => $chat_id,
+                    'user_id'  => $user_id,
+                    'content'  => $content,
+                    'is_image' => $is_image,
+                    'is_doc'   => $is_doc,
+                ];
+
+                $this->db->insert('chats_messages', $data);
+
+                redirect('chat/index/'.$chat_id);
+            }
+        } elseif (isset($_POST['submit_video'])) {
+            /* Activate video call */
+            $this->view_data['video'] = 1;
+            $this->view_data['audio'] = $this->session->userdata('audio');
+            $this->session->set_userdata(['video' => 1]);
+
+            $this->chat_component($chat_id);
+        } elseif (isset($_POST['submit_audio'])) {
+            /* Activate video call */
+            $this->view_data['video'] = $this->session->userdata('video');
+            $this->view_data['audio'] = 1;
+            $this->session->set_userdata(['audio' => 1]);
+
+            $this->chat_component($chat_id);
+        } elseif (isset($_POST['submit_close_audio'])) {
+            /* Activate video call */
+            $this->session->unset_userdata('audio');
+            $this->view_data['video'] = $this->session->userdata('video');
+            $this->view_data['audio'] = 0;
+
+            $this->chat_component($chat_id);
+        } elseif (isset($_POST['submit_close_video'])) {
+            /* Activate video call */
+            $this->session->unset_userdata('video');
+            $this->view_data['video'] = 0;
+            $this->view_data['audio'] = $this->session->userdata('audio');
+
+            $this->chat_component($chat_id);
+        } else {
+            $this->view_data['audio'] = $this->session->userdata('audio');
+            $this->view_data['video'] = $this->session->userdata('video');
+
+            $this->chat_component($chat_id);
+        }
+    }
+
+    /* Redirect method */
+    public function layanan_redirect()
+    {
+        /* first_id and second_id is user id */
+        $first_id = $this->uri->segment(3);
+        $second_id = $this->uri->segment(4);
+        $third_id = $this->uri->segment(5);
+
+        // Start FROM-TO
+        $this->session->set_userdata('chat_from', $first_id);
+        $this->session->set_userdata('chat_to', $second_id);
+        // End FROM-TO
+
+        $this->session->set_userdata('layanan_id', $third_id);
+        $this->session->set_userdata('target_id', $second_id);
+
+        $result = $this->segment->locate_layanan($first_id, $second_id, $third_id);
+
+        if ($result == 1) {
+            redirect('chat/index/'.$this->session->userdata('chat_id'));
+        } else {
+            /* Crete the chatroom between two id */
+            $chat = $this->chat->create_layanan($first_id, $second_id, $third_id);
+
+            if ($chat == 1) {
+                $topic = $first_id . '-' . $second_id . '-' . $third_id;
+
+                $chat = $this->chat->obtain_layanan($topic)->row_array();
+
+                /* Data to be inserted to uri_segments table */
+                $data['first'] = $first_id;
+                $data['second'] = $second_id;
+                $data['third'] = $third_id;
+                $data['chat_id'] = $chat['id'];
+                $segment = $this->segment->create($data);
+
+                if ($segment == 1) {
+                    redirect('chat/index/'.$data['chat_id']);
+                } else {
+                    echo 'Error!!!';
+                    die();
+                }
+            }
+        }
+    }
+
     /* Redirect method */
     public function redirect()
     {
+        /* first_id and second_id is user id */
         $first_id = $this->uri->segment(3);
         $second_id = $this->uri->segment(4);
 
@@ -198,7 +343,10 @@ class Chat extends CI_Controller
 
         /* Send in chat_id and user_id */
         $this->view_data['chat_id'] = $chat_id;
+
+        $this->view_data['layanan_id'] = $this->session->userdata('layanan_id');
         $this->view_data['user_id'] = $this->session->userdata('user_id');
+        
         $this->view_data['chat_from'] = $this->session->userdata('chat_from');
         $this->view_data['chat_to'] = $this->session->userdata('chat_to');
 
@@ -222,12 +370,16 @@ class Chat extends CI_Controller
     {
         /* Posting */
         $chat_id = $this->input->post('chat_id');
+
         $user_id = $this->input->post('user_id');
+        $layanan_id = $this->input->post('layanan_id');
+
         $chat_from = $this->input->post('chat_from');
         $chat_to = $this->input->post('chat_to');
+
         $content = $this->input->post('content', true);
 
-        $this->chat->add_chat_message($chat_id, $user_id, $content, $chat_from, $chat_to);
+        $this->chat->add_chat_message($chat_id, $user_id, $content, $chat_from, $chat_to, $layanan_id);
 
         /* Executing the method on model */
         echo $this->_get_chats_messages($chat_id);

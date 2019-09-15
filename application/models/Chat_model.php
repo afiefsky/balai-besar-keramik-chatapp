@@ -52,6 +52,19 @@ class Chat_model extends CI_Model
         }
     }
 
+    public function create_layanan($first_id, $second_id, $third_id)
+    {
+        $data['topic'] = $first_id . '-' . $second_id . '-' . $third_id;
+
+        $chat = $this->db->insert('chats', $data);
+
+        if ($chat) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     /**
      * Description.
      *
@@ -61,11 +74,11 @@ class Chat_model extends CI_Model
      *
      * @return array
      */
-    public function add_chat_message($chat_id, $user_id, $content, $chat_from, $chat_to)
+    public function add_chat_message($chat_id, $user_id, $content, $chat_from, $chat_to, $layanan_id)
     {
-        $query = 'INSERT INTO chats_messages (chat_id, user_id, content, chat_from, chat_to) VALUES (?, ?, ?, ?, ?)';
+        $query = 'INSERT INTO chats_messages (chat_id, user_id, content, chat_from, chat_to, layanan_id) VALUES (?, ?, ?, ?, ?, ?)';
 
-        return $this->db->query($query, [$chat_id, $user_id, $content, $chat_from, $chat_to]);
+        return $this->db->query($query, [$chat_id, $user_id, $content, $chat_from, $chat_to, $layanan_id]);
     }
 
     public function get_chats_messages($chat_id, $last_chat_message_id = 0)
@@ -108,6 +121,11 @@ class Chat_model extends CI_Model
     }
 
     public function obtain($topic)
+    {
+        return $this->db->get_where('chats', ['topic' => $topic]);
+    }
+
+    public function obtain_layanan($topic)
     {
         return $this->db->get_where('chats', ['topic' => $topic]);
     }

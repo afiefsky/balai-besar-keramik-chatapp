@@ -31,7 +31,7 @@ $(document).ready(function() {
 
         if (content === "") return false;
 
-        $.post(base_url + "index.php/chat/ajax_add_chat_message", { content: content, chat_id: chat_id, user_id: user_id, chat_from: chat_from, chat_to: chat_to }, function(data) {
+        $.post(base_url + "index.php/chat/ajax_add_chat_message", { content: content, chat_id: chat_id, user_id: user_id, chat_from: chat_from, chat_to: chat_to, layanan_id: layanan_id }, function(data) {
             /* Condition */
             if (data.status == 'ok') {
 

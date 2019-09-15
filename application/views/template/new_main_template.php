@@ -8,12 +8,18 @@
 
     <script type="text/javascript">
       var chat_id = "<?php echo $chat_id; ?>";
+
       var user_id = "<?php echo $user_id; ?>";
+      var layanan_id = "<?php echo $layanan_id; ?>";
+
       var chat_from = "<?php echo $chat_from; ?>";
       var chat_to = "<?php echo $chat_to; ?>";
     </script>
     
+    <!-- Custom JS start -->
     <script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>chat.js"></script>
+    <!-- Custom JS end -->
+
     <script src="<?php echo base_url() ?>assets/js/latest-v2.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/camera.css">
     <?php

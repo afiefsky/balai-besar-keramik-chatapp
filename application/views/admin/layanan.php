@@ -1,4 +1,4 @@
-<h3>Pilih Layanan</h3>
+<h3>Layanan user <?php echo $target_full_name; ?></h3>
 <br>
 <br>
 
@@ -24,12 +24,6 @@
                 ";
             }
         ?>
-        <!-- <tr>
-            <td>1</td>
-            <td>R & D</td>
-            <td>-icon here-</td>
-            <td><?php echo anchor('chat/redirect/'.$this->session->userdata('user_id').'/'.$r->id, 'Chat', ['class' => 'btn btn-primary btn-sm']); ?></td>
-        </tr> -->
     </tbody>
 </table>
 

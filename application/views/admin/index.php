@@ -45,7 +45,7 @@
             <td>$r->last_name</td>
             <td>$aktif_status</td>
             <td>".
-                anchor('chat/redirect/' . $login_user_id . '/' . $r->id, 'Chat', ['class' => 'btn btn-primary btn-sm']) . " " .
+                anchor('admin/layanan/' . $login_user_id . '/' . $r->id, 'Cek Layanan', ['class' => 'btn btn-primary btn-sm']) . " " .
                 anchor('chat/user/' . $r->id, 'Check', ['class' => 'btn btn-info btn-sm'])
             ."</td>
         </tr>";
