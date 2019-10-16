@@ -131,15 +131,13 @@ CREATE TABLE `users` (
   `is_logged_in` tinyint(1) NOT NULL,
   `is_activated` enum('0','1') DEFAULT '1',
   `last_login` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`(255)),
-  UNIQUE KEY `username` (`username`(255))
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `users` (`id`, `username`, `password`, `role`, `email`, `first_name`, `last_name`, `division`, `avatar`, `is_logged_in`, `is_activated`, `last_login`) VALUES
-(0,	'admin',	'3e47b75000b0924b6c9ba5759a7cf15d',	'0',	'admin@mail.com',	'admin',	'admin',	'admin',	'administrator.jpg',	1,	'1',	'2019-10-13 17:00:00'),
-(1,	'afiefsky',	'3e47b75000b0924b6c9ba5759a7cf15d',	'1',	'afiefsky@gmail.com',	'Muhammad Afief',	'Farista',	'Full Stack Developer',	'afiefsky.png',	1,	'1',	'2019-10-12 17:00:00'),
+(0,	'admin',	'3e47b75000b0924b6c9ba5759a7cf15d',	'0',	'admin@mail.com',	'admin',	'admin',	'admin',	'administrator.jpg',	1,	'1',	'2019-09-22 17:00:00'),
+(1,	'afiefsky',	'3e47b75000b0924b6c9ba5759a7cf15d',	'1',	'afiefsky@gmail.com',	'Muhammad Afief',	'Farista',	'Full Stack Developer',	'afiefsky.png',	0,	'1',	'2019-09-23 03:25:48'),
 (13,	'tsabitkun',	'3e47b75000b0924b6c9ba5759a7cf15d',	'1',	'tsabitkun@gmail.com',	'Tsabit Abdul',	'Aziz',	'Full Stack Developer',	'user_default.png',	0,	'1',	'2019-09-01 03:52:28'),
 (18,	'',	'3e47b75000b0924b6c9ba5759a7cf15d',	'1',	'raphtalia@mail.com',	'Raphtalia',	'Helen',	'',	'default.jpeg',	1,	'1',	'2019-09-01 03:52:33');
 
--- 2019-10-16 02:25:50
+-- 2019-09-23 03:26:45
