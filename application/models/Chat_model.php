@@ -129,4 +129,11 @@ class Chat_model extends CI_Model
     {
         return $this->db->get_where('chats', ['topic' => $topic]);
     }
+
+    public function get_conversation($data)
+    {
+        $chat_from = $data['chat_from'];
+        $chat_to = $data['chat_to'];
+        $layanan_id = $data['layanan_id'];
+    }
 }

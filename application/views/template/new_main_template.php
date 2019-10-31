@@ -20,7 +20,7 @@
     <script type="text/javascript" src="<?php echo base_url().'assets/js/'; ?>chat.js"></script>
     <!-- Custom JS end -->
 
-    <script src="<?php echo base_url() ?>assets/js/latest-v2.js"></script>
+    <!-- <script src="<?php echo base_url() ?>assets/js/latest-v2.js"></script> -->
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/camera.css">
     <?php
     if ($this->session->userdata('role') == 1) {
@@ -33,7 +33,7 @@
     <script type="text/javascript">
       var base_url = "<?php echo base_url(); ?>";
     </script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
     <!-- BREAK -->
 
     <meta charset="utf-8">

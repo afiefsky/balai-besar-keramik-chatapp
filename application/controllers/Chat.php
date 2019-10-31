@@ -500,4 +500,18 @@ class Chat extends CI_Controller
             exit();
         }
     }
+
+    public function get_conversation()
+    {
+        $data = [
+            'chat_from' => $this->input->get('chat_from'),
+            'chat_to' => $this->input->get('chat_to'),
+            'layanan_id' => $this->input->get('layanan_id')
+        ];
+
+        // get to db here
+
+        header('Content-Type: application/json');
+        echo json_encode($data);
+    }
 }
