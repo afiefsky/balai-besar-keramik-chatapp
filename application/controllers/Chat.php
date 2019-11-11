@@ -485,6 +485,9 @@ class Chat extends CI_Controller
                 'status'               => 'ok',
                 'content'              => $chats_messages_html,
                 'last_chat_message_id' => $last_chat_message_id,
+                'sender'               => $chats_messages->username,
+                'sender_id'            => $chats_messages->user_id,
+                'single_content'       => $chats_messages->content
             ];
 
             return json_encode($result);
@@ -494,6 +497,9 @@ class Chat extends CI_Controller
                 'status'               => 'ok',
                 'content'              => '',
                 'last_chat_message_id' => $last_chat_message_id,
+                'sender'               => $chats_messages->username,
+                'sender_id'            => $chats_messages->user_id,
+                'single_content'       => $chats_messages->content
             ];
 
             return json_encode($result);

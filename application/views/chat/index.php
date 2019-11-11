@@ -123,31 +123,31 @@
 // });
 
 // push notifications
-document.addEventListener('DOMContentLoaded', function() {
-    if (!Notification) {
-        alert('Desktop notifications not available in your browser. Try Chromium.');
-        return;
-    }
+// document.addEventListener('DOMContentLoaded', function() {
+//     if (!Notification) {
+//         alert('Desktop notifications not available in your browser. Try Chromium.');
+//         return;
+//     }
 
-    if (Notification.permission != 'granted') Notification.requestPermission();
-});
+//     if (Notification.permission != 'granted') Notification.requestPermission();
+// });
 
-function notifyMe() {
-    if (Notification.permission != 'granted')
-        Notification.requestPermission();
-    else {
-        var notification = new Notification('Balai Keramik Chat App', {
-            // icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
-            body: 'Ada pesan baru untuk anda!',
-        });
-        notification.onclick = function(e) {
-            e.preventDefault();
-        };
-    }
-}
+// function notifyMe() {
+//     if (Notification.permission != 'granted')
+//         Notification.requestPermission();
+//     else {
+//         var notification = new Notification('Balai Keramik Chat App', {
+//             // icon: 'http://cdn.sstatic.net/stackexchange/img/logos/so/so-icon.png',
+//             body: 'Ada pesan baru untuk anda!',
+//         });
+//         notification.onclick = function(e) {
+//             e.preventDefault();
+//         };
+//     }
+// }
 
 // setInterval(() => {
-    notifyMe();
+    // notifyMe();
 // }, 1000);
 
 /**
@@ -157,11 +157,69 @@ function notifyMe() {
  * 3. layanan_id
  * which all of them required to set the notification, get it with axios
  */
-console.log('chat_from:' + chat_from)
-console.log('chat_to: ' + chat_to)
-console.log('layanan_id: ' + layanan_id)
-axios.get(base_url + 'index.php/chat/get_conversation?chat_from=' + chat_from + '&chat_to=' + chat_to + '&layanan_id=' + layanan_id)
-    .then((resp) => {
-        console.log(resp)
-    });
+// console.log('chat_from:' + chat_from)
+// console.log('chat_to: ' + chat_to)
+// console.log('layanan_id: ' + layanan_id)
+// axios.get(base_url + 'index.php/chat/get_conversation?chat_from=' + chat_from + '&chat_to=' + chat_to + '&layanan_id=' + layanan_id)
+// .then((resp) => {
+//     console.log(resp)
+// });
+
+ion.sound({
+    sounds: [
+        {
+            name: "bell_ring"
+        }
+        // {
+        //     name: "notify_sound",
+        //     volume: 0.2
+        // },
+        // {
+        //     name: "alert_sound",
+        //     volume: 0.3,
+        //     preload: false
+        // }
+    ],
+    volume: 0.5,
+    path: "<?php echo base_url(); ?>assets/sounds/"
+});
+
+function get_chats_messages() {
+    $.post(base_url + "index.php/chat/ajax_get_chats_messages", { chat_id: chat_id }, function(data) {
+        /* Condition */
+        if (data.status == 'ok') {
+            var current_content = $("div#chat_viewport").html();
+
+            $("div#chat_viewport").html(current_content + data.content);
+
+            if (!data.content == '') {
+                /* Below is notification, still buggy. */
+                if (data.sender_id != user_id) {
+                    var notification = new Notification('Balai Keramik', {
+                        icon: '',
+                        body: data.sender + ': ' + data.single_content
+                    });
+
+                    notification.onclick = function (e) {
+                        e.preventDefault();
+                        return false;
+                    };
+
+                    ion.sound.play("bell_ring");
+                }
+
+                /* Scroll each time you get new message */
+                $('div#chat_viewport').scrollTop($('div#chat_viewport')[0].scrollHeight);
+            } else {/* Do nothing. */}
+        } else {/* Error here. */}
+    }, "json");
+
+    return false;
+} // End get_chats_messages.
+
+get_chats_messages();
+
+setInterval(function() {
+    get_chats_messages();
+}, 750);
 </script>

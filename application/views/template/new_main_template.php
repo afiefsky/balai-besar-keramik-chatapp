@@ -34,6 +34,7 @@
       var base_url = "<?php echo base_url(); ?>";
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ion-sound/3.0.7/js/ion.sound.min.js"></script>
     <!-- BREAK -->
 
     <meta charset="utf-8">
